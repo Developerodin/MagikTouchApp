@@ -1,0 +1,7 @@
+{
+  "name": "Magiktouch Services",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
