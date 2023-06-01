@@ -1,0 +1,55 @@
+.tabs-page {
+  ion-tab-button {
+    .tab-icon-active {
+      display: none;
+     
+    }
+
+    .tab-icon-inactive {
+      display: block;
+    }
+
+    &.tab-selected {
+      .tab-icon-active {
+        display: block;
+       
+      }
+
+      .tab-icon-inactive {
+        display: none;
+      }
+
+      background-color: rgb(0, 0, 0);
+      border-radius: 86px;
+     
+    }
+
+    &.color-gold {
+      &.tab-selected {
+      color: gold;
+   
+      }
+
+      ion-badge {
+        --ion-color-base:"gold" !important;
+      }
+    }
+
+    .rotate-45 {
+      transform: rotate(45deg);
+    }
+  }
+
+  ion-tabs {
+    padding-top: var(--ion-safe-area-top);
+  }
+}
+
+.tabs-top ion-tabs {
+  padding-top: var(--ion-safe-area-top);
+}
+
+.profile-text{
+  font-size: 10px;
+  text-transform: uppercase;
+}

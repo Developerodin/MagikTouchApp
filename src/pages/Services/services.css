@@ -1,0 +1,192 @@
+.category_list_arr{
+    font-size: 1.1rem;
+    position: absolute;
+    right: 10px;
+    margin-top: -15px;
+    color: #c92427;
+}
+
+
+.fullSlider .awssld__wrapper{
+    margin-top: 0px !important;
+}
+.fullSlider .awssld__wrapper{
+    width: 100%;
+    border-radius: 0px;
+    margin-top: 0px !important;;
+}
+
+.fullSlider .awssld__bullets{
+    display: none !important;;
+}
+.fullSlider .awssld{
+    border-radius: 0px;
+    max-width: 100%;
+}
+
+.backButton{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #333;
+    text-align: center;
+    line-height: 20px;
+    color: #fff;
+    position: absolute;
+    z-index: 99999;
+    top: 10px;
+    left: 10px;
+}
+.backButton i{
+    font-size: 20px;
+}
+
+.rating-icon{
+    color:#ffe234;
+}
+
+.verified-badge{
+    font-size: 10px;
+}
+.p-20{
+    padding: 20px 10px;
+}
+.pt-0{
+    padding-top: 0px;
+}
+
+.service-label{
+    position: absolute;
+    left: -20px;
+    margin-top: -5px;
+    z-index: 99999999999;
+}
+
+.mt-70{
+    margin-top:70px;
+}
+
+.mt-60{
+    margin-top:60px;
+}
+
+.pb-15{
+    padding-bottom: 15px;
+}
+
+.service-card{
+    overflow: inherit;
+    border-radius: 0px;
+}
+
+.service-rating{
+    font-size: 11px;
+}
+.service-description{
+    line-height: 18px;
+    margin-bottom: 10px;
+}
+
+.mtb-10{
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+
+.add-service-btn{
+    font-size: 11px;
+    padding: 7px 12px;
+    margin-top:-15px;
+    background-color: #fff;
+    color:#dc3545;
+}
+
+ .stepper {
+    border: solid 1px rgba(0, 0, 0, 0.1);
+    float: right;
+}
+
+.stepper a:first-child {
+    border-right: solid 1px rgba(0, 0, 0, 0.1);
+}
+.stepper a {
+    text-align: center;
+    width: 33px;
+    height: 33px;
+    line-height: 33px;
+    font-size: 9px;
+}
+
+.stepper a:last-child {
+    border-left: solid 1px rgba(0, 0, 0, 0.1);
+}
+.stepper a {
+    text-align: center;
+    width: 33px;
+    height: 33px;
+    line-height: 33px;
+    font-size: 9px;
+}
+
+
+.tabs-pill {
+    background-color: #4A89DC;
+    border-color: #4A89DC;
+    color: #FFF !important;
+    transition: all 200ms ease;
+    overflow: hidden;
+    text-align: center;
+    width: 100%;
+    margin: auto;
+    color: #000;
+    line-height: 35px;
+    padding: 7.5px 15px;
+    margin: 0px 3px;
+}
+
+.tabs-pill-o {
+    background-color: #fff !important;
+    border:1px solid #4A89DC !important;
+    color: #333 !important;
+    
+}
+
+.mb-5px{
+    margin-bottom: 10px;
+}
+
+.info-text{
+    line-height: 14px;
+    margin-top: 0px;
+}
+
+.ptb-5{
+    padding-top:5px;
+    padding-bottom: 5px;
+}
+
+.no-border{
+    border:none;
+}
+
+.pr-1{
+    padding:0px;
+    padding-right: 5px;
+
+}
+.pl-1{
+    padding:0px;
+    padding-left: 5px;
+
+}
+
+.buy-now-botton{
+    border-radius: 4px !important;
+    border: 2px solid #CC181A;
+    background-color: #fff;
+    background-image: none !important;
+    color: #CC181A !important;
+}
+
+.add-cart-botton{
+    background-image: linear-gradient(130deg, #CC181A, #a32123) !important;
+}
