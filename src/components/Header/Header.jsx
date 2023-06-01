@@ -6,17 +6,14 @@ import"./Header.scss"
 const Header = () => {
   return (
 
-    <IonHeader collapse="fade" >
-      <IonToolbar>
-      <IonList lines="none" style={{borderRadius:"40px",height:"50px"}}>
-              <IonItem>
-              <IonIcon  icon={searchOutline} slot='start'></IonIcon>
-                <IonInput placeholder='Search for services'>
-                
-              </IonInput>
-                <IonIcon  slot="end"  icon={cartOutline}></IonIcon>
-              </IonItem>
-           </IonList>
+    <IonHeader collapse="fade"  >
+      <IonToolbar style={{borderColor:"transparent"}}>
+      
+              <IonSearchbar style={{marginTop:"7px"}}>
+              
+              </IonSearchbar>
+              <IonIcon style={{marginTop:"10px"}} size='large' slot="end"  icon={cartOutline}></IonIcon>
+             
             
       </IonToolbar>
           
