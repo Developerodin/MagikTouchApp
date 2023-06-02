@@ -2,16 +2,22 @@
 import { IonCard, IonCardContent, IonCol, IonGrid, IonIcon, IonImg, IonRow, IonText } from '@ionic/react'
 import { arrowForwardCircleOutline } from 'ionicons/icons'
 import React from 'react'
+import { useHistory } from 'react-router'
 
 const ServicesCard= ({Data}) => {
+  const history=useHistory();
+  const handelCardClick=(e)=>{
+     console.log(Data.id);
+     history.push(`/tabs/category/${Data.id}`)
+  }
   // const {Data}=props
   return (
-    <IonCard style={{padding:"0px",margin:"10px"}}>
+    <IonCard style={{padding:"0px",margin:"10px"}} onClick={handelCardClick}>
       <IonCardContent style={{padding:"0px",margin:"0px"}}>
         <IonGrid >
           <IonRow>
             <IonCol size="4">
-              <IonImg src={Data.original_image}></IonImg>
+              <img style={{borderRadius:"35px"}} src={Data.original_image}/>
             </IonCol>
 
             <IonCol size="8" style={{marginTop:"15px"}}>

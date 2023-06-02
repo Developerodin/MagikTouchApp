@@ -9,6 +9,7 @@ import Explore from '../Explore/Explore';
 import Service from '../Services/Service';
 import Profile from '../Profile/Profile';
 import MagikGate from '../MagikGate/MagikGate';
+import Category from '../Category/Category';
 
 const Tabs = () => {
   return (
@@ -19,6 +20,7 @@ const Tabs = () => {
          <Route path="/tabs/services" component={Service} exact />
          <Route path="/tabs/profile" component={Profile} exact />
         <Route path="/tabs/magikgate" component={MagikGate} exact />
+        <Route path="/tabs/category/:id" component={Category} exact />
         {/*<Route path="/tabs/discover" component={Discover} exact />
         
        
