@@ -14,7 +14,7 @@ const ProductDetail = () => {
             <IonGrid>
                 <IonRow style={{backgroundColor:"#FFF",padding:"5px"}}>
                  <IonCol size='12'>
-                   <IonImg src="https://mgktch.com/image/cache/catalog/Products%20(Square)/AC%20Services/AC%20Switch%20Box%20Installation/AC%20Switch%20Box%20Installation%20(1)-100x100.jpg"></IonImg>
+                   <IonImg src="https://mgktch.com/image/catalog/Products%20(Square)/AC%20Services/AC%20Switch%20Box%20Installation/AC%20Switch%20Box%20Installation%20(1).jpg"></IonImg>
                  </IonCol>
                  <IonCol size='12'>
                     <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>

@@ -10,7 +10,7 @@ const ProductCard = () => {
                     <IonCol>
                         
                         <div style={{display:"flex",justifyContent:"center",alignItems:"center",height:"100%"}}> 
-                        <IonImg style={{height:"100%"}} src="https://mgktch.com/image/cache/catalog/Products%20(Square)/AC%20Services/AC%20Switch%20Box%20Installation/AC%20Switch%20Box%20Installation%20(1)-100x100.jpg"></IonImg>
+                        <IonImg style={{height:"100%"}} src="https://mgktch.com/image/catalog/Products%20(Square)/AC%20Services/AC%20Switch%20Box%20Installation/AC%20Switch%20Box%20Installation%20(1).jpg"></IonImg>
                         </div>
 
                         <div style={{position:"absolute",top:'0',margin:"-2px 0px 0px -10px"}}>

@@ -17,7 +17,10 @@ const ServicesCard= ({Data}) => {
         <IonGrid >
           <IonRow>
             <IonCol size="4">
-              <img style={{borderRadius:"35px"}} src={Data.original_image}/>
+              <div style={{height:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
+              <img style={{borderRadius:"10px"}} src={Data.original_image}/>
+              </div>
+             
             </IonCol>
 
             <IonCol size="8" style={{marginTop:"15px"}}>

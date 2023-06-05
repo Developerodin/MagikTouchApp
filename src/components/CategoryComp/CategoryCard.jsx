@@ -47,7 +47,7 @@ const CategoryCard = () => {
 
                 <IonCol size="4" >
                     <div style={{display:"flex",justifyContent:"center",alignItems:"center",height:"100%"}}>
-                    <IonImg src="https://mgktch.com/image/cache/catalog/Products%20(Square)/AC%20Services/AC%20Switch%20Box%20Installation/AC%20Switch%20Box%20Installation%20(1)-100x100.jpg" alt='img'></IonImg>
+                    <IonImg src="https://mgktch.com/image/catalog/Products%20(Square)/AC%20Services/AC%20Switch%20Box%20Installation/AC%20Switch%20Box%20Installation%20(1).jpg" alt='img'></IonImg>
                     
                     </div>
                     <div style={{position:"absolute",top:"139px"}}>
