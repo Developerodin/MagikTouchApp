@@ -1,0 +1,32 @@
+
+.expolre-toolbar
+{
+  --background: ion-color-white;
+  ion-avatar
+  {
+    height: 2.5rem;
+    margin-left: 10px;
+    width: 2.5rem;
+    
+  }
+
+  ion-title
+  {
+    img
+    {
+      height: 20px;
+    }
+  }
+}
+
+
+.explore-page {
+  &.explore-bg {
+    --background: linear-gradient(var(--ion-color-white), var(--ion-color-light));
+  }
+
+
+}
+
+
+

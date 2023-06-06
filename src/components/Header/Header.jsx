@@ -2,6 +2,7 @@ import { IonCard, IonCol, IonGrid, IonHeader, IonIcon, IonInput, IonItem, IonLis
 import { cartOutline, searchOutline } from 'ionicons/icons'
 import React from 'react'
 import"./Header.scss"
+import { Link } from 'react-router-dom'
 
 const Header = () => {
   return (
@@ -9,10 +10,16 @@ const Header = () => {
     <IonHeader collapse="fade"  >
       <IonToolbar style={{borderColor:"transparent"}}>
       
-              <IonSearchbar style={{marginTop:"7px"}}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+      <IonSearchbar style={{marginTop:"7px",width:"90%"}}>
               
               </IonSearchbar>
-              <IonIcon style={{marginTop:"10px"}} size='large' slot="end"  icon={cartOutline}></IonIcon>
+              <Link to={"/cart"} style={{textDecoration:"none"}}>
+              <IonIcon style={{margin:"10px 10px 0px 0px"}} color='dark' size='large' slot="end"   icon={cartOutline}></IonIcon>
+              </Link>
+      </div>
+              
+              
              
             
       </IonToolbar>

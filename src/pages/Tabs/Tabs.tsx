@@ -10,15 +10,26 @@ import Service from '../Services/Service';
 import Profile from '../Profile/Profile';
 import MagikGate from '../MagikGate/MagikGate';
 import Category from '../Category/Category';
+import Login from '../Login/Login';
+import SignUp from '../SignUp/SignUp';
+import Cart from '../Cart/Cart';
 
 const Tabs = () => {
+  const Auth=false;
   return (
     <IonTabs className="tabs-top">
       <IonRouterOutlet>
         <Redirect exact path="/tabs" to="/tabs/explore" />
          <Route path="/tabs/explore" component={Explore} exact />
          <Route path="/tabs/services" component={Service} exact />
-         <Route path="/tabs/profile" component={Profile} exact />
+         {
+          Auth ? 
+               <Route path="/tabs/profile" component={Profile} exact />
+                    :
+              <Route path="/tabs/profile" component={Login} exact />
+         }
+         <Route path="/tabs/signup" component={SignUp} exact />
+        
         <Route path="/tabs/magikgate" component={MagikGate} exact />
         <Route path="/tabs/category/:id" component={Category} exact />
         {/*<Route path="/tabs/discover" component={Discover} exact />

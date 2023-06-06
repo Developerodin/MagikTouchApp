@@ -25,6 +25,7 @@ import './theme/variables.css';
 import Tabs from './pages/Tabs/Tabs';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
 import OrderBook from './pages/OrderBook/OrderBook';
+import Cart from './pages/Cart/Cart';
 
 setupIonicReact();
 
@@ -35,7 +36,7 @@ const App = () => (
         <Route path="/tabs" component={Tabs} />
         <Route path="/product-detail/:id" component={ProductDetail} />
         <Route path="/book" component={OrderBook} />
-
+        <Route path="/cart" component={Cart} exact />
        
         <Route exact path="/">
           <Redirect to="/tabs" />

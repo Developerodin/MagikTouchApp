@@ -3,6 +3,7 @@ import { IonCard, IonCol, IonGrid, IonHeader, IonIcon, IonInput, IonItem, IonLis
 import { arrowBack, caretBackOutline, cartOutline, searchOutline } from 'ionicons/icons'
 import React from 'react'
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const HeaderSub = (props) => {
     const {Title}=props;
@@ -30,9 +31,12 @@ const HeaderSub = (props) => {
                 </IonCol>
 
                 <IonCol size='2' >
-                    <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
-                    <IonIcon  size='large' icon={cartOutline}></IonIcon>
+                    <Link to={"/cart"} style={{textDecoration:"none"}}>
+                    <div style={{display:"flex",justifyContent:"center",alignItems:"center",height:"100%"}}>
+                    <IonIcon  size='large' color='dark' icon={cartOutline}></IonIcon>
                     </div>
+                    </Link>
+                   
                 
                 </IonCol>
             </IonRow>
