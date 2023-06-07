@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 
 
 import {
@@ -16,6 +16,7 @@ import { calendarClearOutline, linkOutline, listOutline, shieldCheckmarkOutline,
 import Header from '../../components/Header/Header';
 import HomeSwiper from '../../components/ExploreComp/HomeSwiper';
 import { Link } from 'react-router-dom';
+import { CatalogContext } from '../../contexts';
 
 
 
@@ -40,7 +41,7 @@ const OtherServicesData=[
 
 const Explore=()=> {
   
-  
+
 
     
     
@@ -53,7 +54,7 @@ const Explore=()=> {
               
               <IonRow style={{padding:"10px"}} >
                 
-                <IonCol size='12' style={{border:"1px solid blue",borderRadius:"40px",height:"210px",backgroundColor:"#193568"}}>
+                <IonCol size='12' style={{borderRadius:"40px",padding:"0px"}}>
                 <HomeSwiper/>
                 </IonCol>
          

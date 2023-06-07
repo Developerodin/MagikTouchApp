@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import { IonButton, IonCard, IonCardContent, IonCol, IonGrid, IonIcon, IonImg, IonRow, IonText } from '@ionic/react'
 import { addCircleOutline, starOutline, timeOutline } from 'ionicons/icons'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const CategoryCard = () => {
+const CategoryCard = ({Data}) => {
   return (
     <IonCard style={{width:"100%",margin:"10px 0px",padding:"0px"}}>
      <IonCardContent style={{padding:"3px"}}>
@@ -11,14 +12,14 @@ const CategoryCard = () => {
             <IonRow>
                 <IonCol size='8'>
                 <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-                        <IonText style={{fontSize:"22px",fontWeight:"bold"}}>AC Switch Box Installation</IonText>
+                        <IonText style={{fontSize:"22px",fontWeight:"bold"}}>{Data.name}</IonText>
                         
                     </div>
 
                     <div style={{color:"grey",fontSize:"14px"}}>
                         <div style={{margin:"10px 0px"}}>
                             <IonIcon style={{marginRight:"7px"}}color="warning" icon={starOutline}></IonIcon>
-                            <IonText>0 (0 Ratings)</IonText>
+                            <IonText>{Data.rating} (Ratings)</IonText>
                         </div>
 
                         <div>
@@ -36,7 +37,7 @@ const CategoryCard = () => {
                        
                    
                         <div style={{marginTop:"10px"}}>
-                        <Link to="/product-detail/:2" style={{color:"#21e3f1"}}>
+                        <Link to={{pathname:`/product-detail/${Data.product_id}`,state:Data}}  style={{color:"#21e3f1"}}>
                             <IonText>View Details</IonText>
                         </Link>
                         </div>
@@ -47,7 +48,7 @@ const CategoryCard = () => {
 
                 <IonCol size="4" >
                     <div style={{display:"flex",justifyContent:"center",alignItems:"center",height:"100%"}}>
-                    <IonImg src="https://mgktch.com/image/catalog/Products%20(Square)/AC%20Services/AC%20Switch%20Box%20Installation/AC%20Switch%20Box%20Installation%20(1).jpg" alt='img'></IonImg>
+                    <IonImg src={Data.original_image} alt='img'></IonImg>
                     
                     </div>
                     <div style={{position:"absolute",top:"139px"}}>

@@ -1,14 +1,22 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-redeclare */
 import { IonButton, IonCol, IonContent, IonGrid, IonIcon, IonImg, IonPage, IonRow, IonText } from '@ionic/react'
 import { bagAddOutline, starOutline } from 'ionicons/icons'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import CategoryCard from '../../components/CategoryComp/CategoryCard'
 import './Category.scss';
 import HeaderSub from '../../components/Header/HeaderSub';
-import { useParams } from 'react-router';
+import { useLocation, useParams } from 'react-router';
+import { httpService } from '../../services';
+import { CatalogContext, SessionContext } from '../../contexts';
 const Category = () => {
     const[ProductData,setProductData]=useState([]);
-
-    const {id}=useParams()
+    const { sessionId } = useContext(SessionContext);
+    const { showToast } = useContext(CatalogContext);
+    const [allCategories1, setAllCategories] = useState([]);
+    const [categoryProducts, setCategoryProducts] = useState([]);
+    const {id}=useParams();
+    const { state } = useLocation();
     const allCategories=[
         {id:"1",original_image:"https://mgktch.com/image/catalog/logo-1.png",name:"offers near you",description:""},
         {id:"2",original_image:"https://mgktch.com/image/catalog/Service%20Categories/Air%20Conditioner%20Repair.jpg",name:"AC Services",description:"hellow there"},
@@ -26,9 +34,29 @@ const Category = () => {
    const Data=[
         {},{},{},{},{}
     ]
+   
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const { data: catDetails } = await httpService.get(
+            httpService.apiEndpoint + "products&category=" +id,
+            { headers: httpService.headers }
+          );
+          if (catDetails && "success" in catDetails && catDetails.success === 1) {
+            console.log("Data",catDetails.data);
+            setCategoryProducts(catDetails.data);
+          }
+        } catch (error) {
+          console.log("Error in productlist page", error);
+        }
+      };
+      if (sessionId) {
+        fetchData();
+      }
+    }, [sessionId]);
 
     useEffect(()=>{
-        console.log("id",id)
+        console.log("state",state)
        const Data= allCategories.filter((el)=>{
     
             return el.id===id
@@ -38,18 +66,18 @@ const Category = () => {
     },[])
   return (
     <IonPage>
-        <HeaderSub Title={"Category"}/>
+        <HeaderSub Title={state ? state.name : "Category"}/>
         <IonContent className="explore-bg explore-page" forceOverscroll={ false } style={{backgroundColor:"#F1F1F1"}}>
             <IonGrid>
                 <IonRow>
                   <IonCol size='12'>
-               {ProductData.length >0 && <IonImg  src={ProductData[0].original_image} alt='Image'></IonImg>}  
+               {state && <IonImg  src={state.original_image} alt='Image'></IonImg>}  
                
                   </IonCol>
                   <IonCol size='12'>
                     <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-                    {ProductData.length >0 &&
-                        <IonText style={{fontSize:"22px",fontWeight:"bold"}}>{ProductData[0].name}</IonText>}
+                    {state &&
+                        <IonText style={{fontSize:"22px",fontWeight:"bold"}}>{state.name}</IonText>}
                         <IonButton size='small'>MTS VERIFIED</IonButton>
                     </div>
 
@@ -69,9 +97,9 @@ const Category = () => {
 
                 <IonRow>
                     {
-                        Data.map((el,index)=>{
+                       categoryProducts.length >0 && categoryProducts.map((el,index)=>{
                             return  <IonCol  key={index} size='12'>
-                            <CategoryCard/>
+                            <CategoryCard Data={el}/>
                             </IonCol>
                         })
                     }

@@ -13,6 +13,7 @@ import Category from '../Category/Category';
 import Login from '../Login/Login';
 import SignUp from '../SignUp/SignUp';
 import Cart from '../Cart/Cart';
+import SubServices from '../Services/SubServices';
 
 const Tabs = () => {
   const Auth=false;
@@ -22,6 +23,7 @@ const Tabs = () => {
         <Redirect exact path="/tabs" to="/tabs/explore" />
          <Route path="/tabs/explore" component={Explore} exact />
          <Route path="/tabs/services" component={Service} exact />
+         
          {
           Auth ? 
                <Route path="/tabs/profile" component={Profile} exact />
@@ -31,7 +33,7 @@ const Tabs = () => {
          <Route path="/tabs/signup" component={SignUp} exact />
         
         <Route path="/tabs/magikgate" component={MagikGate} exact />
-        <Route path="/tabs/category/:id" component={Category} exact />
+        
         {/*<Route path="/tabs/discover" component={Discover} exact />
         
        

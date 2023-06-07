@@ -11,12 +11,15 @@ const HeaderSub = (props) => {
     const handelBack=()=>{
         history.goBack();
     }
+    const handelHome=()=>{
+        history.replace("/")
+    }
   return (
     <IonHeader collapse="fade"  >
     <IonToolbar style={{borderColor:"transparent"}}>
         <IonGrid>
             <IonRow>
-                <IonCol size='2'>
+                <IonCol size='2' onClick={handelHome}>
                 <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
                 <img style={{height:"40px",width:"40px"}} src="assets/images/logo.png" alt="logo"/>
                 </div>
@@ -26,7 +29,7 @@ const HeaderSub = (props) => {
                 <IonCol size='8' >
                     <div onClick={handelBack} style={{display:"flex",justifyContent:"center",alignItems:"center",fontSize:"17px",fontWeight:"bold",height:"100%"}}>
                         <IonIcon style={{marginRight:"10px"}}  color="danger" icon={caretBackOutline}></IonIcon>
-                        <IonText color="danger" >{Title}</IonText>
+                        <IonText color="danger" >{Title.slice(0,18)}...</IonText>
                     </div>
                 </IonCol>
 

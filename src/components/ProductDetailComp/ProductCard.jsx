@@ -1,16 +1,19 @@
+/* eslint-disable react/prop-types */
 import { IonButton, IonCard, IonCardContent, IonCol, IonGrid, IonImg, IonRow, IonText } from '@ionic/react'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const ProductCard = () => {
+const ProductCard = ({Data}) => {
   return (
     <IonCard style={{padding:"0px",height:"350px",width:"200px"}}>
         <IonCardContent style={{padding:"0px",margin:"0px"}}>
-            <IonGrid>
+        <Link to={{pathname:`/product-detail/${Data.product_id}`,state:Data}} style={{textDecoration:"none"}}>
+        <IonGrid>
                 <IonRow style={{height:"26vh"}}>
                     <IonCol>
                         
                         <div style={{display:"flex",justifyContent:"center",alignItems:"center",height:"100%"}}> 
-                        <IonImg style={{height:"100%"}} src="https://mgktch.com/image/catalog/Products%20(Square)/AC%20Services/AC%20Switch%20Box%20Installation/AC%20Switch%20Box%20Installation%20(1).jpg"></IonImg>
+                        <IonImg style={{height:"100%"}} src={Data.thumb}></IonImg>
                         </div>
 
                         <div style={{position:"absolute",top:'0',margin:"-2px 0px 0px -10px"}}>
@@ -23,16 +26,16 @@ const ProductCard = () => {
 
                 <IonRow>
                     <IonCol>
-                        <div style={{textAlign:"left"}}>
+                        <div style={{textAlign:"left",color:"grey"}}>
                         <div >
-                        <IonText style={{fontSize:"13px",fontWeight:"bold"}}>Decorative celling fan install</IonText>
+                        <IonText style={{fontSize:"13px",fontWeight:"bold"}}>{Data.name}</IonText>
                         </div>
 
                         <div style={{marginTop:"5px"}}>
                             <IonText style={{fontSize:"12px",fontWeight:"bold"}}>Trending now</IonText>
                         </div>
                         <div style={{marginTop:"5px"}}>
-                        ₹429 
+                        ₹{Data.price}
                         </div>
                         </div>
                         
@@ -41,6 +44,8 @@ const ProductCard = () => {
                     
                 </IonRow>
             </IonGrid>
+        </Link>
+            
             
         </IonCardContent>
     </IonCard>

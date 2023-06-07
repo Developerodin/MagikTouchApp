@@ -4,11 +4,11 @@ import { arrowForwardCircleOutline } from 'ionicons/icons'
 import React from 'react'
 import { useHistory } from 'react-router'
 
-const ServicesCard= ({Data}) => {
+const SubServiceCard= ({Data}) => {
   const history=useHistory();
   const handelCardClick=(e)=>{
      console.log(Data.category_id);
-     history.push(`/services/${Data.category_id}`)
+     history.push(`/category/${Data.category_id}`,Data)
   }
   // const {Data}=props
   return (
@@ -49,5 +49,5 @@ const ServicesCard= ({Data}) => {
   )
 }
 
-export default ServicesCard
+export default SubServiceCard
 
