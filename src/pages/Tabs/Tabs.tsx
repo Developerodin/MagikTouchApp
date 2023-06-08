@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import {
   IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonIcon, IonText 
 } from '@ionic/react';
-import { timerOutline, personCircleOutline, homeOutline, clipboardOutline, gridOutline, personOutline, businessSharp } from 'ionicons/icons';
+import { timerOutline, personCircleOutline, homeOutline, clipboardOutline, gridOutline, personOutline, businessSharp, callOutline } from 'ionicons/icons';
 // import './Tabs.scss';
 import Explore from '../Explore/Explore';
 import Service from '../Services/Service';
@@ -14,9 +14,25 @@ import Login from '../Login/Login';
 import SignUp from '../SignUp/SignUp';
 import Cart from '../Cart/Cart';
 import SubServices from '../Services/SubServices';
+import { UserContext } from '../../contexts';
+import ContactUs from '../Contact Us/ContactUs';
 
 const Tabs = () => {
-  const Auth=false;
+ 
+  const[ProfilePath,setProfilePath]=useState("");
+  const { log, userDetails } = useContext(UserContext);
+  
+  useEffect(() => {
+    console.log("Log in profile",log)
+    if (log === 0) {
+      setProfilePath("/tabs/login")
+    }
+    else{
+      setProfilePath("/tabs/profile")
+    }
+    
+  }, [log]);
+
   return (
     <IonTabs className="tabs-top">
       <IonRouterOutlet>
@@ -24,15 +40,13 @@ const Tabs = () => {
          <Route path="/tabs/explore" component={Explore} exact />
          <Route path="/tabs/services" component={Service} exact />
          
-         {
-          Auth ? 
-               <Route path="/tabs/profile" component={Profile} exact />
-                    :
-              <Route path="/tabs/profile" component={Login} exact />
-         }
+        
+              <Route path="/tabs/login" component={Login} exact />
+              <Route path="/tabs/profile" component={Profile} exact />
+         {/* <Route path="/tabs/profile" component={Auth ? Profile : Login} exact /> */}
          <Route path="/tabs/signup" component={SignUp} exact />
         
-        <Route path="/tabs/magikgate" component={MagikGate} exact />
+        <Route path="/tabs/contactus" component={ContactUs} exact />
         
         {/*<Route path="/tabs/discover" component={Discover} exact />
         
@@ -47,7 +61,7 @@ const Tabs = () => {
           <IonIcon icon={ homeOutline } />
           <IonText className='profile-text'>HOME</IonText> 
         </IonTabButton>
-        <IonTabButton tab="profile" href="/tabs/profile">
+        <IonTabButton tab="profile" href={ProfilePath}>
           <IonIcon icon={ personOutline } />
           <IonText className='profile-text'>PROFILE</IonText> 
         </IonTabButton>
@@ -55,9 +69,9 @@ const Tabs = () => {
           <IonIcon icon={ gridOutline } />
           <IonText className='profile-text'>SERVICES</IonText> 
         </IonTabButton>
-        <IonTabButton tab="magikgate" href="/tabs/magikgate">
-          <IonIcon icon={ businessSharp} />
-          <IonText className='profile-text'>MAGIK GATE</IonText> 
+        <IonTabButton tab="contactus" href="/tabs/contactus">
+          <IonIcon icon={ callOutline} />
+          <IonText className='profile-text'>CONTACT US</IonText> 
         </IonTabButton>
        
       </IonTabBar>

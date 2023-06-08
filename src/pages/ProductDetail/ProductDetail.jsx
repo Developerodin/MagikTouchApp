@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { IonButton, IonCol, IonContent, IonGrid, IonIcon, IonImg, IonPage, IonRow, IonText } from '@ionic/react'
+import { IonButton, IonCol, IonContent, IonFooter, IonGrid, IonIcon, IonImg, IonPage, IonRow, IonText } from '@ionic/react'
 import { alertCircleOutline, chatbubble } from 'ionicons/icons';
 import React, { useContext, useEffect, useState } from 'react'
 import ProductFooter from './ProductFooter';
@@ -8,15 +8,16 @@ import HeaderSub from '../../components/Header/HeaderSub';
 import { CartContext, CatalogContext, SessionContext } from '../../contexts';
 import { useLocation, useParams } from 'react-router';
 import { httpService } from '../../services';
+import { Link } from 'react-router-dom';
 
 const ProductDetail = () => {
-    const [QuantityProduct,setQuantityProduct] =useState(1);
-    const [Quantity,setQuantity] =useState(1);
+    // const [QuantityProduct,setQuantityProduct] =useState(1);
+    // const [Quantity,setQuantity] =useState(1);
     const [productDetails, setProductDetails] = useState({});
     const [productForm, setProductForm] = useState();
     const [productPrice, setProductPrice] = useState("");
     const [productPriceWithTax, setProductPriceWithTax] = useState("");
-    
+    const [quantity, setQuantity] = useState(1);
     const [relatedProducts, setRelatedProducts] = useState([]);
     const [buttonsDisabled, setButtonsDisabled] = useState(false);
     const { addToCart } = useContext(CartContext);
@@ -28,6 +29,68 @@ const ProductDetail = () => {
     const {id} = useParams();
     const location = useLocation();
 const { state } = location
+const handleAddToCart = (redirect) => {
+  if (quantity < productDetails.minimum) {
+    showToast("error", "Minimum quantity is " + productDetails.minimum, "");
+    return;
+  }
+  if (quantity % productDetails.minimum !== 0) {
+    showToast(
+      "error",
+      "Quantity must be multiple of " + productDetails.minimum,
+      ""
+    );
+    return;
+  }
+  for (let option of productDetails.options) {
+    if (
+      Number(option.required) === 1 &&
+      !(String(option.product_option_id) in productForm.option)
+    ) {
+      showToast("error", "Please choose a " + option.name, "");
+      return;
+    }
+  }
+
+  for (let key in productForm.option) {
+    let thatOption = productDetails.options.find((opt) => {
+      return opt.product_option_id == key;
+    });
+    console.log("taht option", thatOption);
+    let thatOptionValue = thatOption.option_value.find((optVal) => {
+      return optVal.product_option_value_id == productForm.option[key];
+    });
+    if (thatOptionValue.quantity < quantity) {
+      showToast(
+        "error",
+        "Only " +
+          thatOptionValue.quantity +
+          " " +
+          thatOption.name +
+          " " +
+          thatOptionValue.name +
+          " avialable",
+        ""
+      );
+      return;
+    }
+  }
+ 
+  const updatedProductForm = { ...productForm };
+  updatedProductForm.total = productForm.price * quantity;
+  updatedProductForm.total_excluding_tax =
+    productForm.price_excluding_tax * quantity;
+  updatedProductForm.quantity = quantity;
+  addToCart(updatedProductForm);
+  setProductForm(updatedProductForm);
+  if (redirect) {
+    navigate("/cart");
+  } else {
+    setTimeout(() => {
+      setButtonsDisabled(false);
+    }, 3000);
+  }
+};
     useEffect(() => {
       console.log("State aki",state)
         const fetchData = async () => {
@@ -176,11 +239,11 @@ Object.keys(productDetails).length>0 &&
         <IonText style={{fontSize:"18px",fontWeight:"bold"}}>₹{productDetails.price}/</IonText>
         </div>
        
-        <div style={{display:"flex",justifyContent:"center",alignItems:"center",marginRight:"20px"}}>
+        {/* <div style={{display:"flex",justifyContent:"center",alignItems:"center",marginRight:"20px"}}>
             <IonButton size='small' style={{height:"20px"}} color="light" disabled={QuantityProduct===1 ? true : false}  onClick={()=>{setQuantityProduct((prev)=>prev-1)}}>-</IonButton>
             <IonText style={{margin:"0px 5px"}}>{QuantityProduct}</IonText>
             <IonButton size='small' style={{height:"20px"}} color="light" onClick={()=>{setQuantityProduct((prev)=>prev+1)}}>+</IonButton>
-        </div>
+        </div> */}
         
     </div>
 
@@ -244,7 +307,26 @@ Object.keys(productDetails).length>0 &&
             }
            
         </IonContent>
-        <ProductFooter/>
+        <IonFooter >
+        {/* <div style={{display:"flex",justifyContent:"space-around",alignAitem:"center",margin:"10px 0px"}}>
+        
+        
+        </div> */}
+        <IonGrid>
+            <IonRow>
+                <IonCol>
+                <IonButton  expand="block"  onClick={() => handleAddToCart()} style={{borderRadius:"20px",height:"30px"}} color="danger">Add To Cart</IonButton>
+                </IonCol>
+                <IonCol>
+                  <Link to={"/book"} style={{textDecoration:"none"}}>
+                  <IonButton expand="full"  fill="outline" color="danger"  style={{height:"30px",border:"1px solid crimson"}}>BOOK NOW</IonButton>
+                  </Link>
+                
+                </IonCol>
+            </IonRow>
+        </IonGrid>
+        
+    </IonFooter>
     </IonPage>
   )
 }

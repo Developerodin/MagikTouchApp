@@ -1,10 +1,12 @@
-import { IonCard, IonCol, IonGrid, IonHeader, IonIcon, IonInput, IonItem, IonList, IonRow, IonSearchbar, IonTitle, IonToolbar } from '@ionic/react'
+import { IonBadge, IonCard, IonCol, IonGrid, IonHeader, IonIcon, IonInput, IonItem, IonList, IonRow, IonSearchbar, IonTitle, IonToolbar } from '@ionic/react'
 import { cartOutline, searchOutline } from 'ionicons/icons'
-import React from 'react'
+import React, { useContext } from 'react'
 import"./Header.scss"
 import { Link } from 'react-router-dom'
+import { CartContext } from '../../contexts'
 
 const Header = () => {
+  const { cart } = useContext(CartContext);
   return (
 
     <IonHeader collapse="fade"  >
@@ -15,7 +17,14 @@ const Header = () => {
               
               </IonSearchbar>
               <Link to={"/cart"} style={{textDecoration:"none"}}>
-              <IonIcon style={{margin:"10px 10px 0px 0px"}} color='dark' size='large' slot="end"   icon={cartOutline}></IonIcon>
+                <div >
+                <IonIcon style={{margin:"10px 10px 0px 0px"}} color='dark' size='large' slot="end"   icon={cartOutline}></IonIcon>
+                <div style={{position:"absolute",top:"0",right:"0",marginTop:"10px"}}>
+                <IonBadge style={{borderRadius:"50px"}}  slot="end">{cart && cart.length}</IonBadge>
+                </div>
+               
+                </div>
+              
               </Link>
       </div>
               

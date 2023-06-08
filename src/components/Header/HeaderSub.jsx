@@ -1,13 +1,15 @@
 /* eslint-disable react/prop-types */
-import { IonCard, IonCol, IonGrid, IonHeader, IonIcon, IonInput, IonItem, IonList, IonRow, IonSearchbar, IonText, IonTitle, IonToolbar } from '@ionic/react'
+import { IonBadge, IonCard, IonCol, IonGrid, IonHeader, IonIcon, IonInput, IonItem, IonList, IonRow, IonSearchbar, IonText, IonTitle, IonToolbar } from '@ionic/react'
 import { arrowBack, caretBackOutline, cartOutline, searchOutline } from 'ionicons/icons'
-import React from 'react'
+import React, { useContext } from 'react'
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
+import { CartContext } from '../../contexts';
 
 const HeaderSub = (props) => {
     const {Title}=props;
     const history=useHistory();
+    const { cart } = useContext(CartContext);
     const handelBack=()=>{
         history.goBack();
     }
@@ -35,9 +37,13 @@ const HeaderSub = (props) => {
 
                 <IonCol size='2' >
                     <Link to={"/cart"} style={{textDecoration:"none"}}>
-                    <div style={{display:"flex",justifyContent:"center",alignItems:"center",height:"100%"}}>
-                    <IonIcon  size='large' color='dark' icon={cartOutline}></IonIcon>
-                    </div>
+                    <div style={{display:"flex",justifyContent:"center",alignItems:"center"}} >
+                <IonIcon style={{margin:"5px 10px 0px 0px"}} color='dark' size='large' slot="end"   icon={cartOutline}></IonIcon>
+                <div style={{position:"absolute",top:"0",margin:"10px 0px 0px 20px"}}>
+                <IonBadge style={{borderRadius:"50px"}}  slot="end">{cart && cart.length}</IonBadge>
+                </div>
+               
+                </div>
                     </Link>
                    
                 

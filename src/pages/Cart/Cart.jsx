@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import "./Cart.scss";
 import {
   IonButton,
@@ -22,8 +22,12 @@ import HeaderSub from "../../components/Header/HeaderSub";
 import { Link } from "react-router-dom";
 import { phonePortraitOutline, starHalfOutline } from "ionicons/icons";
 import CartCard from "../../components/CartComp/CartCard";
+import { CartContext, CatalogContext } from "../../contexts";
+import CartTotal from "../../components/CartComp/CartTotal";
 const Cart = () => {
-
+  const { cart, deleteFromCart, updateQuantity } = useContext(CartContext);
+  const { getProductFromProductsList } = useContext(CatalogContext);
+  const [buttonsDisabled, setButtonsDisabled] = useState(false);
 const CartData=[
         {id:"2",Img:"https://mgktch.com/image/catalog/Service%20Categories/Air%20Conditioner%20Repair.jpg",title:"AC Services",price:"2,302"},
         {id:"3",Img:"https://mgktch.com/image/catalog/Service%20Categories/Bathroom%20Cleaning.jpg",title:"Bathroom Cleaning",price:"2,302"},
@@ -48,45 +52,13 @@ const CartData=[
       >
      
         {
-        CartData.map((el,index)=>{
+        cart.lrngth!==0 && cart.map((el,index)=>{
             return  <CartCard key={index}  Data={el}/>
            
         })
       }
      
-     <IonCard>
-        <IonCardContent>
-            <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",fontWeight:"bold"}}>
-                <div>
-                    <IonText>SUB TOTAL</IonText>
-                </div>
-                <div>
-                <IonText>₹ 2,302</IonText>
-                </div>
-            </div>
-
-            <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",margin:"10px 0px",fontWeight:"bold"}}>
-                <div>
-                    <IonText>GST</IonText>
-                </div>
-                <div>
-                <IonText>₹ 30</IonText>
-                </div>
-            </div>
-            <div style={{borderTop:"0.5px dashed grey"}}>
-
-            <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginTop:"20px",fontWeight:"bold"}}>
-                <div>
-                    <IonText>TOTAL</IonText>
-                </div>
-                <div>
-                <IonText>₹ 2,332</IonText>
-                </div>
-            </div>
-
-            </div>
-        </IonCardContent>
-     </IonCard>
+     <CartTotal/>
      
       </IonContent>
       <IonFooter>

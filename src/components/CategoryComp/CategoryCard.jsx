@@ -52,8 +52,10 @@ const CategoryCard = ({Data}) => {
                     
                     </div>
                     <div style={{position:"absolute",top:"139px"}}>
-                       
-                        <IonButton color="light" style={{fontSize:"12px",height:"31px",width:"64px",fontWeight:"bold"}}><IonIcon size='small'  icon={addCircleOutline}></IonIcon>ADD</IonButton>
+                    <Link to={{pathname:`/product-detail/${Data.product_id}`,state:Data}}  style={{color:"#21e3f1"}}>
+                    <IonButton color="light" style={{fontSize:"12px",height:"31px",width:"64px",fontWeight:"bold"}}><IonIcon size='small'  icon={addCircleOutline}></IonIcon>ADD</IonButton>
+                        </Link>
+                        
                         
                     </div>
                     
