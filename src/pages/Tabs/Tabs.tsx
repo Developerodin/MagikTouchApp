@@ -3,7 +3,7 @@ import { Redirect, Route } from 'react-router-dom';
 import {
   IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonIcon, IonText 
 } from '@ionic/react';
-import { timerOutline, personCircleOutline, homeOutline, clipboardOutline, gridOutline, personOutline, businessSharp, callOutline } from 'ionicons/icons';
+import { timerOutline, personCircleOutline, homeOutline, clipboardOutline, gridOutline, personOutline, businessSharp, callOutline, timeOutline } from 'ionicons/icons';
 // import './Tabs.scss';
 import Explore from '../Explore/Explore';
 import Service from '../Services/Service';
@@ -16,6 +16,7 @@ import Cart from '../Cart/Cart';
 import SubServices from '../Services/SubServices';
 import { UserContext } from '../../contexts';
 import ContactUs from '../Contact Us/ContactUs';
+import Orders from '../OrdersTab/Orders';
 
 const Tabs = () => {
  
@@ -39,7 +40,7 @@ const Tabs = () => {
         <Redirect exact path="/tabs" to="/tabs/explore" />
          <Route path="/tabs/explore" component={Explore} exact />
          <Route path="/tabs/services" component={Service} exact />
-         
+         <Route path="/tabs/orders" component={Orders} exact />
         
               <Route path="/tabs/login" component={Login} exact />
               <Route path="/tabs/profile" component={Profile} exact />
@@ -68,6 +69,10 @@ const Tabs = () => {
         <IonTabButton tab="activities" href="/tabs/services" className="color-gold">
           <IonIcon icon={ gridOutline } />
           <IonText className='profile-text'>SERVICES</IonText> 
+        </IonTabButton>
+        <IonTabButton tab="orders" href="/tabs/orders">
+          <IonIcon icon={ timeOutline } />
+          <IonText className='profile-text'>ORDERS</IonText> 
         </IonTabButton>
         <IonTabButton tab="contactus" href="/tabs/contactus">
           <IonIcon icon={ callOutline} />

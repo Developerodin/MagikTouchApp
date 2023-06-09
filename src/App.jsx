@@ -29,6 +29,9 @@ import Cart from './pages/Cart/Cart';
 import SubServices from './pages/Services/SubServices';
 import Category from './pages/Category/Category';
 import Profile from './pages/Profile/Profile';
+import ManageAddress from './pages/Profile/ProfileTabs/ManageAddress';
+import AboutCompany from './pages/Profile/ProfileTabs/AboutCompany';
+import TermConditions from './pages/Profile/ProfileTabs/TermConditions';
 
 setupIonicReact();
 
@@ -40,7 +43,9 @@ const App = () => (
         <Route path="/product-detail/:id" component={ProductDetail} />
         <Route path="/book" component={OrderBook} />
         <Route path="/cart" component={Cart} exact />
-        
+        <Route path="/manage-address" component={ManageAddress} exact />
+        <Route path="/about-us" component={AboutCompany} exact />
+        <Route path="/terms-conditions" component={TermConditions} exact />
         <Route path="/services/:id" component={SubServices} exact />
         <Route path="/category/:id" component={Category} exact />
         <Route exact path="/">
