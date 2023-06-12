@@ -1,5 +1,5 @@
-import { IonButton, IonCard, IonCardContent, IonCol, IonContent, IonGrid, IonIcon, IonItem, IonLabel, IonList, IonPage, IonRow, IonText, IonTitle } from '@ionic/react'
-import React, { useContext, useEffect } from 'react'
+import { IonActionSheet, IonButton, IonCard, IonCardContent, IonCol, IonContent, IonGrid, IonIcon, IonItem, IonLabel, IonList, IonModal, IonPage, IonRow, IonText, IonTitle } from '@ionic/react'
+import React, { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../contexts';
 import { useHistory } from 'react-router';
 import "./Profile.scss"
@@ -7,6 +7,8 @@ import HeaderSub from '../../components/Header/HeaderSub';
 import { calendarOutline, caretForwardOutline, earthOutline, informationCircle, locationOutline, logOutOutline, personOutline, refreshOutline, shareSocialOutline, star, starOutline, trashOutline } from 'ionicons/icons';
 import ProfileListItem from './ProfileListItem';
 const Profile = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const ProfileTabs=[
     {icon:locationOutline,title:"Manage Address",link:"/manage-address",color:"success"},
     {icon:refreshOutline,title:"Order History",link:"/tabs/orders",color:"dark"},
@@ -23,6 +25,17 @@ const Profile = () => {
     }
     
   }, [log]);
+
+  const handelLogout =()=>{
+// console.log("Logged out")
+localStorage.clear();
+history.push("/");
+window.location.reload();
+  }
+
+  const handelDeleteAccount=()=>{
+    console.log("Delete Account");
+  }
 
   return (
     <IonPage>
@@ -62,12 +75,12 @@ const Profile = () => {
                 }
 
                 <IonItem button style={{marginTop:"10px"}}>
-                  <IonIcon icon={shareSocialOutline} color='medium' slot="start"></IonIcon>
+                  <IonIcon icon={shareSocialOutline} color='dark' slot="start"></IonIcon>
                   <IonLabel>Share App</IonLabel>
-                  <IonIcon icon={caretForwardOutline} color='dark' slot="end"></IonIcon>
+                  <IonIcon icon={caretForwardOutline}  slot="end"></IonIcon>
                 </IonItem>
 
-                <IonItem button style={{marginTop:"10px"}}>
+                <IonItem button style={{marginTop:"10px"}} onClick={() => setIsDeleteOpen(true)}>
                   <IonIcon icon={trashOutline}  slot="start"></IonIcon>
                   <IonLabel>Delete Account</IonLabel>
                   <IonIcon icon={caretForwardOutline} slot="end"></IonIcon>
@@ -79,7 +92,7 @@ const Profile = () => {
                   <IonIcon icon={caretForwardOutline} slot="end"></IonIcon>
                 </IonItem>
 
-                <IonItem  lines='none' style={{marginTop:"10px"}}>
+                <IonItem  lines='none' style={{marginTop:"10px"}} onClick={() => setIsOpen(true)}>
                   <IonIcon icon={logOutOutline} color="danger" slot="start"></IonIcon>
                   <IonLabel>Logout</IonLabel>
                   <IonIcon icon={caretForwardOutline} slot="end"></IonIcon>
@@ -95,6 +108,55 @@ const Profile = () => {
     
    </IonCardContent>
         </IonCard>
+
+        <IonActionSheet
+        isOpen={isOpen}
+        header="MagikTouch"
+        buttons={[
+          {
+            text: 'Logout',
+            role: 'destructive',
+            data: {
+              action: 'logout',
+            },
+          },
+         
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            data: {
+              action: 'cancel',
+            },
+          },
+        ]}
+        onDidDismiss={() => {
+        const action = event.detail.data?.action;
+
+              if (action === 'logout') {
+             // Call your logout function here
+                   handelLogout();
+    }
+          setIsOpen(false)
+        
+        }}
+      ></IonActionSheet>
+
+
+      <IonModal isOpen={isDeleteOpen} onDidDismiss={()=>setIsDeleteOpen(false)}   initialBreakpoint={0.25} breakpoints={[0.25]}>
+          <IonContent className="ion-padding">
+            
+            <IonList>
+              <IonItem>
+                <IonButton expand='block' style={{width:"100%",height:"50px"}} onClick={handelDeleteAccount} color="danger">Delete</IonButton>
+              </IonItem>
+
+              <IonItem lines='none' style={{marginTop:"20px"}}>
+                <IonButton expand='block' style={{width:"100%",height:"50px"}} color="light" onClick={()=>setIsDeleteOpen(false)}>Cancel</IonButton>
+              </IonItem>
+              
+            </IonList>
+          </IonContent>
+        </IonModal>
         </IonContent>
     </IonPage>
   )

@@ -9,6 +9,7 @@ import { CartContext, CatalogContext, SessionContext } from '../../contexts';
 import { useLocation, useParams } from 'react-router';
 import { httpService } from '../../services';
 import { Link } from 'react-router-dom';
+import Toast from '../Toast/Toast';
 
 const ProductDetail = () => {
     // const [QuantityProduct,setQuantityProduct] =useState(1);
@@ -30,6 +31,7 @@ const ProductDetail = () => {
     const location = useLocation();
 const { state } = location
 const handleAddToCart = (redirect) => {
+  <Toast/>
   if (quantity < productDetails.minimum) {
     showToast("error", "Minimum quantity is " + productDetails.minimum, "");
     return;

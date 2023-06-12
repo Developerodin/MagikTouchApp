@@ -31,10 +31,10 @@ const ServicesData=[
 
 
 const OtherServicesData=[
-  {img:"https://mgktch.com/image/cache/catalog/Service%20Categories/Electrician-100x100.jpg",title:"Electrician"},
-  {img:"https://mgktch.com/image/cache/catalog/Service%20Categories/Pest%20Control-100x100.jpg",title:"Pest control"},
-  {img:"https://mgktch.com/image/cache/catalog/Service%20Categories/Plumber-100x100.jpg",title:"Plumbing Services"},
-  {img:"https://mgktch.com/image/cache/catalog/Service%20Categories/RO%20Services%20&%20Repairs-100x100.jpg",title:"Ro Services"},
+  {img:"https://mgktch.com/image/cache/catalog/Service%20Categories/Electrician-100x100.jpg",title:"Electrician",url:"/category/117"},
+  {img:"https://mgktch.com/image/cache/catalog/Service%20Categories/Pest%20Control-100x100.jpg",title:"Pest control",url:"/category/116"},
+  {img:"https://mgktch.com/image/cache/catalog/Service%20Categories/Plumber-100x100.jpg",title:"Plumbing Services",url:"/category/118"},
+  {img:"https://mgktch.com/image/cache/catalog/Service%20Categories/RO%20Services%20&%20Repairs-100x100.jpg",title:"Ro Services",url:"/category/119"},
   
 ]
 
@@ -114,7 +114,7 @@ const Explore=()=> {
                                     <div style={{marginTop:"-30px",padding:"0px"}}>
                                       
                                       <p>{el.title}</p>
-                                      <Link to="#" style={{color:"grey",fontSize:"12px"}}>View Details</Link>
+                                      <Link to={el.url} style={{color:"grey",fontSize:"12px"}}>View Details</Link>
                                       
                                       </div>
                                       </IonCard>

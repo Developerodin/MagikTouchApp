@@ -14,6 +14,9 @@ const UserProvider = (props) => {
   const [userDetails, setUserDetails] = useState(
     JSON.parse(localStorage.getItem("userDetails"))
   );
+  const [UserAddress, setUserAddress] = useState(
+    JSON.parse(localStorage.getItem("userAddress")) || null
+  );
   const { sessionId } = useContext(SessionContext);
   const{showToast} = useContext(CatalogContext);
   const [log, setLog] = useState(-1);
@@ -250,7 +253,7 @@ const UserProvider = (props) => {
 
   return (
     <UserContext.Provider
-      value={{ user, login, signup, logout, userDetails, log, updateProfile, deleteAccount }}
+      value={{ user, login, signup, logout, userDetails, log, updateProfile, deleteAccount,UserAddress, setUserAddress }}
     >
       {props.children}
     </UserContext.Provider>
