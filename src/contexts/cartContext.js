@@ -198,12 +198,17 @@ const CartProvider = (props) => {
   };
 
   const validateCheckout = async () => {
+    console.log("in validateCheckout function ==> ")
     try {
       let deleteCart = await httpService.delete(
         httpService.apiEndpointShort + "cart/empty",
         { headers: { ...httpService.headers, "X-Oc-Session": sessionId } }
       );
       deleteCart = deleteCart.data;
+    //  let deleteCart = {
+    //     success : 1
+    //   }
+      console.log("Delete Cart",deleteCart)
       if (deleteCart && "success" in deleteCart && deleteCart.success === 1) {
         const allItems = cart.map((item, index) => {
           return {

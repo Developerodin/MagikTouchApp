@@ -9,7 +9,7 @@ export default {
   // apiEndpoint: "http://localhost/ndcp27oct/index.php?route=feed/rest_api/",
   // apiEndpointLong: "http://localhost/ndcp27oct/index.php?route=",
 
-  apiEndpointShort: "https://mgktch.com/index.php/api/rest/",
+  apiEndpointShort: "https://mgktch.com/api/rest/",
   apiEndpoint: "https://mgktch.com/index.php?route=feed/rest_api/",
   apiEndpointLong: "https://mgktch.com/index.php?route=",
 

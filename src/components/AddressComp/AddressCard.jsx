@@ -3,8 +3,8 @@ import { IonButton, IonCard, IonCardContent, IonCol, IonGrid, IonIcon, IonRow, I
 import { pencilOutline, trashOutline } from 'ionicons/icons'
 import React from 'react'
 
-const AddressCard = ({Data}) => {
-  console.log("Data",Data);
+const AddressCard = ({Data,address, deleteAddress}) => {
+  
   return (
     <IonCard style={{borderRadius:"30px"}}>
     <IonCardContent>
@@ -21,16 +21,16 @@ const AddressCard = ({Data}) => {
     <IonCol size='12'>
       <div style={{width:"90%",fontSize:"16px",fontWeight:"bold"}}>
       <IonText>
-      {Data.firstname} {Data.lastname}
+      {address.firstname} {address.lastname}
         </IonText><br/>
 
         <IonText>
-        {Data.address_1}
+        {address.address_1}
         </IonText>
         <br />
         <IonText>
-        {Data.city}, {Data.zone_id}, {Data.country_id},{" "}
-              {Data.postcode}
+        {address.city}, {address.zone_id}, {address.country_id},{" "}
+              {address.postcode}
         </IonText>
               
               <br />
@@ -39,7 +39,7 @@ const AddressCard = ({Data}) => {
     </IonCol >
     <IonCol size='12' style={{marginTop:"20px"}}>
       
-      <IonButton shape='round' expand='block'>
+      <IonButton shape='round' expand='block' onClick={() => deleteAddress(address.address_id)}>
         <IonIcon icon={trashOutline}></IonIcon>
         DELETE
         </IonButton>

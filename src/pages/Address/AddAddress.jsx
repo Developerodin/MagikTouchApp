@@ -104,6 +104,7 @@ const AddAddress = () => {
       };
 
       const addNewAddress = async () => {
+        console.log("In add address api",newAddress,"sessionId",sessionId);
         setButtonsDisabled(true);
         const keys = Object.keys(newAddress);
         let check = true;
@@ -118,7 +119,7 @@ const AddAddress = () => {
         if (check) {
           try {
             let response = await httpService.post(
-              httpService.apiEndpoint + "account/address",
+              httpService.apiEndpointShort+ "account/address",
               newAddress,
               { headers: { ...httpService.headers, "X-Oc-Session": sessionId } }
             );
@@ -134,6 +135,7 @@ const AddAddress = () => {
               console.log("new address added");
               showToast("success", "New Address Added successfully!", "");
               setZones([]);
+              
               setNewAddress({
                 firstname: "",
                 lastname: "",
@@ -146,6 +148,10 @@ const AddAddress = () => {
                 company: "",
               });
             //   navigate(-1);
+          
+            history.goBack();
+            
+
               console.log("navigate -1")
             } else if (
               response &&
@@ -423,7 +429,7 @@ const AddAddress = () => {
      </IonItem>
 
     <IonButton
-    onClick={(e) => addNewAddressCheck(e)}
+    onClick={(e) => addNewAddress(e)}
     disabled={buttonsDisabled}
     expand='block'
     >{buttonsDisabled ? "Adding..." : "Add Address"}</IonButton>
