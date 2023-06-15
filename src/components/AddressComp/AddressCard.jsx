@@ -2,8 +2,15 @@
 import { IonButton, IonCard, IonCardContent, IonCol, IonGrid, IonIcon, IonRow, IonText } from '@ionic/react'
 import { pencilOutline, trashOutline } from 'ionicons/icons'
 import React from 'react'
+import { useHistory } from 'react-router'
+import { Link } from 'react-router-dom'
 
 const AddressCard = ({Data,address, deleteAddress}) => {
+  const history=useHistory();
+  const handelClick=()=>{
+    console.log("Edit click")
+    history.push(`/edit-address/${address.address_id}`)
+}
   
   return (
     <IonCard style={{borderRadius:"30px"}}>
@@ -13,7 +20,9 @@ const AddressCard = ({Data,address, deleteAddress}) => {
     <IonCol size='12'>
       <div style={{textAlign:"end",fontSize:"23px",fontWeight:"bold"}}>
         
-        <IonText> <IonIcon size='small' icon={pencilOutline}></IonIcon> Edit</IonText>
+        <IonText onClick={handelClick}> <IonIcon size='small' icon={pencilOutline}></IonIcon> Edit</IonText>
+       
+        
        
       </div>
     </IonCol>
@@ -29,7 +38,7 @@ const AddressCard = ({Data,address, deleteAddress}) => {
         </IonText>
         <br />
         <IonText>
-        {address.city}, {address.zone_id}, {address.country_id},{" "}
+        {address.city}, {address.zone}, {address.country},{" "}
               {address.postcode}
         </IonText>
               

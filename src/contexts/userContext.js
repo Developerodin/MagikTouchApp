@@ -20,6 +20,7 @@ const UserProvider = (props) => {
   const { sessionId } = useContext(SessionContext);
   const{showToast} = useContext(CatalogContext);
   const [log, setLog] = useState(-1);
+  const [EditedAddress,setEditedAddress]=useState({})
   useEffect(() => {
     const fecthData = async () => {
       try {
@@ -253,7 +254,7 @@ const UserProvider = (props) => {
 
   return (
     <UserContext.Provider
-      value={{ user, login, signup, logout, userDetails, log, updateProfile, deleteAccount,UserAddress, setUserAddress }}
+      value={{  user, login, signup, logout, userDetails, log, updateProfile, deleteAccount,UserAddress, setUserAddress,EditedAddress,setEditedAddress }}
     >
       {props.children}
     </UserContext.Provider>

@@ -75,7 +75,7 @@ const AddAddress = () => {
               data: { zone: countriesZones },
             },
           } = await httpService.get(
-            httpService.apiEndpoint + "countries/" + Arry1[0].value,
+            httpService.apiEndpointShort + "countries/" + Arry1[0].value,
             { headers: httpService.headers }
           );
           console.log("countriesZones===>",countriesZones);
@@ -91,9 +91,12 @@ const AddAddress = () => {
       };
 
       const handleZoneChange = async (e, obj, setObj) => {
+        const ZoneArry=zones.filter(function (option) {
+          return e.detail.value === option.label;
+        })
         const form = { ...obj };
-        console.log(e);
-        form.zone_id = e.value;
+        console.log("zone e data",ZoneArry);
+        form.zone_id = ZoneArry[0].value;
         setObj(form);
       };
     
@@ -135,6 +138,7 @@ const AddAddress = () => {
               console.log("new address added");
               showToast("success", "New Address Added successfully!", "");
               setZones([]);
+              setUserAddress(newAddress);
               
               setNewAddress({
                 firstname: "",
@@ -148,7 +152,7 @@ const AddAddress = () => {
                 company: "",
               });
             //   navigate(-1);
-          
+            setButtonsDisabled(false)
             history.goBack();
             
 
@@ -301,26 +305,21 @@ const AddAddress = () => {
 
      <IonItem  lines="none" style={{border:"0.5px solid grey",borderRadius:"10px",margin:"15px 10px"}}>
     
-     {/* <Select
-                    onChange={(e) =>
-                      handleCountryChange(e, newAddress, setNewAddress)
-                    }
-                    options={countries}
-                    placeholder="Select Country"
-                    name="country_id"
-                    value={countries.filter(function (option) {
-                      return option.value === newAddress.country_id;
-                    })}
-                  /> */}
+    
 
-                  {/* <IonSelect
+                  <IonSelect
           aria-label="countries"
           placeholder="Select Country"
-          
+          name="country_id"
           onIonChange={(ev) => {
             setSelectedcountrie(JSON.stringify(ev.detail.value))
             handleCountryChange(ev, newAddress, setNewAddress,)
+            let data =countries.filter(function (option) {
+              return option.value === newAddress.country_id;
+            })
+            console.log("return Data ===>",data)
         }}
+       
         >
           {countries.map((countrie) => (
             <IonSelectOption key={countrie.value} >
@@ -328,16 +327,8 @@ const AddAddress = () => {
             </IonSelectOption>
 
           ))}
-        </IonSelect> */}
-        <input
-                    type="text"
-                    className="custom-input"
-                    id="c1"
-                    placeholder="country_id"
-                    onChange={(e) => handleChange(e, newAddress, setNewAddress)}
-                    value={newAddress.country_id}
-                    name="country_id"
-                  />
+        </IonSelect>
+
   
    
  <IonText style={{color:"grey",fontSize:"11px"}} slot="end">(required)</IonText>
@@ -345,47 +336,35 @@ const AddAddress = () => {
 
      <IonItem  lines="none" style={{border:"0.5px solid grey",borderRadius:"10px",margin:"15px 10px"}}>
  
-     {/* <Select
-                    onChange={(e) =>
-                      handleZoneChange(e, newAddress, setNewAddress)
-                    }
-                    options={zones}
-                    placeholder={
-                      zones.length === 0
-                        ? "Please select country first"
-                        : "Select State"
-                    }
-                    name="zone_id"
-                    value={zones.filter(function (option) {
-                      return option.value === newAddress.zone_id;
-                    })}
-                  /> */}
-                 {/* <IonSelect
-          aria-label="Food"
+     
+                    <IonSelect
+          aria-label="zones"
+          name="zone_id"
           placeholder={
             zones.length === 0
               ? "Please select country first"
               : "Select State"
           }
           
-        //   onIonChange={(ev) => setCurrentFood(JSON.stringify(ev.detail.value))}
+          onIonChange={(ev) => {
+            setSelectedcountrie(JSON.stringify(ev.detail.value))
+            handleZoneChange(ev, newAddress, setNewAddress)
+            let data =zones.filter(function (option) {
+              return option.value === newAddress.zone_id;
+            })
+            console.log("return Data ===>",data)
+        }}
+        
         >
-          {zones.length > 0 && zones.map((zone) => (
-            <IonSelectOption key={zone.value}>
+          {zones.map((zone) => (
+            <IonSelectOption key={zone.value} >
               {zone.label}
             </IonSelectOption>
-          ))}
-        </IonSelect> */}
 
-<input
-                    type="text"
-                    className="custom-input"
-                    id="c1"
-                    placeholder="zone_id"
-                    onChange={(e) => handleChange(e, newAddress, setNewAddress)}
-                    value={newAddress.zone_id}
-                    name="zone_id"
-                  />
+          ))}
+        </IonSelect>
+
+
   
    
  <IonText style={{color:"grey",fontSize:"11px"}} slot="end">(required)</IonText>

@@ -35,6 +35,8 @@ import TermConditions from './pages/Profile/ProfileTabs/TermConditions';
 import AddAddress from './pages/Address/AddAddress';
 import Toast from './pages/Toast/Toast';
 import { CatalogContext } from './contexts';
+import EditAddress from './pages/Profile/ProfileTabs/EditAddress';
+import OrderSuccess from './pages/OrderSuccess/OrderSuccess';
 
 setupIonicReact();
 
@@ -47,14 +49,18 @@ const App = () => {
       <IonRouterOutlet>
         <Route path="/tabs" component={Tabs} />
         <Route path="/product-detail/:id" component={ProductDetail} />
-        <Route path="/book" component={OrderBook} />
-        <Route path="/add-address" component={AddAddress} />
+        <Route path="/book" component={OrderBook}  />
+        <Route path="/add-address" component={AddAddress} exact/>
+       
         <Route path="/cart" component={Cart} exact />
         <Route path="/manage-address" component={ManageAddress} exact />
         <Route path="/about-us" component={AboutCompany} exact />
         <Route path="/terms-conditions" component={TermConditions} exact />
         <Route path="/services/:id" component={SubServices} exact />
         <Route path="/category/:id" component={Category} exact />
+        {/* <Route path='/OrderSuccess' element={OrderSuccess} exact />  */}
+        <Route path="/edit-address/:id" component={EditAddress} exact />
+        <Route path="/OrderSuccess" component={OrderSuccess} exact />
         <Route exact path="/">
           <Redirect to="/tabs" />
         </Route>

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { IonButton, IonCard, IonCardContent, IonCol, IonGrid, IonIcon, IonRow, IonText } from '@ionic/react'
-import { pencilOutline, pinOutline, trashOutline } from 'ionicons/icons'
+import { checkmark, pencilOutline, pinOutline, trashOutline } from 'ionicons/icons'
 import React, { useState } from 'react'
 
 
@@ -59,11 +59,24 @@ const CartAddressCard = (props) => {
       
     </IonCol >
     <IonCol size='12' style={{marginTop:"20px"}}>
+    {/* {props.selected ? (
+              <button className="btn btn-main btn-xs shadow-bg shadow-bg-s cart-delete btn-primary">
+                <i className="bi bi-check-circle"></i>
+              </button>
+            ) : (
+              ""
+            )} */}
       
-      <IonButton shape='round' expand='block' onClick={props.onClick} color={Selected ? "danger" : "light"}>
+      <IonButton shape='round' expand='block' onClick={props.onClick} color={props.selected ? "danger" : "light"}>
+      {props.selected ? 
+      "Selected" : 
+
+      "Select"}
+        {props.selected ? 
+      <IonIcon icon={checkmark}  ></IonIcon> : 
+
+      ""}
         
-        Select
-        <IonIcon icon={pinOutline}  ></IonIcon>
         </IonButton>
     </IonCol>
   </IonRow>

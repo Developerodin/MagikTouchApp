@@ -205,9 +205,8 @@ const CartProvider = (props) => {
         { headers: { ...httpService.headers, "X-Oc-Session": sessionId } }
       );
       deleteCart = deleteCart.data;
-    //  let deleteCart = {
-    //     success : 1
-    //   }
+     
+     
       console.log("Delete Cart",deleteCart)
       if (deleteCart && "success" in deleteCart && deleteCart.success === 1) {
         const allItems = cart.map((item, index) => {

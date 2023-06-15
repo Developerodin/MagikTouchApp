@@ -187,7 +187,7 @@ console.log("checkout Step",checkoutStep)
       console.log("calling handel Checkout");
       handleCheckout();
     }
-  }, [log, user, cart]);
+  }, [log, user, cart,UserAddress]);
 
   const handleCountryChange = async (e, obj, setObj) => {
     const form = { ...obj };
@@ -265,9 +265,8 @@ console.log("checkout Step",checkoutStep)
 
   const placeOrder = () => {
     const orderPlacer = async () => {
-      console.log("In Order Placer=====>")
       try {
-        let response = await httpService.put(
+        let response = await httpService.post(
           httpService.apiEndpointShort + "confirm",
           {},
           { headers: { ...httpService.headers, "X-Oc-Session": sessionId } }
@@ -286,7 +285,8 @@ console.log("checkout Step",checkoutStep)
 
           showToast("success", "Order placed successfully!", "");
           // navigate("/OrderSuccess");
-          console.log("/OrderSuccess");
+          console.log("order Sucess")
+          history.replace("/OrderSuccess")
           emptyCart();
         } else if (
           response &&
@@ -757,7 +757,7 @@ console.log("checkout Step",checkoutStep)
                 payment_method: "cod",
                 agree: 1,
                 comment: commentt,
-                seller_id:1,
+                seller_id:"",
               },
               { headers: { ...httpService.headers, "X-Oc-Session": sessionId } }
             );

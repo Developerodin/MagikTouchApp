@@ -24,6 +24,7 @@ import { phonePortraitOutline, starHalfOutline } from "ionicons/icons";
 import CartCard from "../../components/CartComp/CartCard";
 import { CartContext, CatalogContext } from "../../contexts";
 import CartTotal from "../../components/CartComp/CartTotal";
+import EmptyCart from "./EmptyCart";
 const Cart = () => {
   const { cart, deleteFromCart, updateQuantity } = useContext(CartContext);
   const { getProductFromProductsList } = useContext(CatalogContext);
@@ -44,37 +45,69 @@ const CartData=[
 
   return (
     <IonPage>
-      <HeaderSub Title={"My Cart"} />
+      {cart && cart.length !== 0 ? <HeaderSub Title={"My Cart"} /> : <HeaderSub Title={"Cart Is Empty"} />}
+      
+      
       <IonContent
         className="explore-bg explore-page"
         forceOverscroll={false}
         style={{ backgroundColor: "#F1F1F1" }}
       >
-     
+        {cart && cart.length !== 0 ? 
+        <>
         {
-        cart.lrngth!==0 && cart.map((el,index)=>{
+        cart.length!==0 && cart.map((el,index)=>{
             return  <CartCard key={index}  Data={el}/>
            
         })
       }
      
      <CartTotal/>
+        </>
+       
+        : 
+        <EmptyCart/>
+
+        }
+     
+        
      
       </IonContent>
       <IonFooter>
+
+      {cart && cart.length !== 0 ? 
+      <IonGrid>
+      <IonRow>
+          {/* <IonCol>
+          <IonButton  expand="block"   style={{borderRadius:"20px",height:"30px"}} color="danger">Book Now</IonButton>
+          </IonCol> */}
+          <IonCol>
+            <Link to={"/book"} style={{textDecoration:"none"}}>
+            <IonButton expand="full"  fill="outline" color="danger"  style={{height:"30px",border:"1px solid crimson"}}>CHECKOUT NOW</IonButton>
+            </Link>
+          
+          </IonCol>
+      </IonRow>
+  </IonGrid>
+      : 
       <IonGrid>
             <IonRow>
                 {/* <IonCol>
                 <IonButton  expand="block"   style={{borderRadius:"20px",height:"30px"}} color="danger">Book Now</IonButton>
                 </IonCol> */}
                 <IonCol>
-                  <Link to={"/book"} style={{textDecoration:"none"}}>
-                  <IonButton expand="full"  fill="outline" color="danger"  style={{height:"30px",border:"1px solid crimson"}}>CHECKOUT NOW</IonButton>
+                  <Link to={"/"} style={{textDecoration:"none"}}>
+                  <IonButton expand="full"  fill="outline" color="danger"  style={{height:"30px",border:"1px solid crimson"}}>SHOP NOW</IonButton>
                   </Link>
                 
                 </IonCol>
             </IonRow>
         </IonGrid>
+      }
+
+      
+
+
       </IonFooter>
     </IonPage>
   );

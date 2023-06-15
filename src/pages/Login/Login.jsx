@@ -64,7 +64,7 @@ const Login = () => {
       showToast("success", "user logged in Successfully!", "");
       // navigate("/home");
       localStorage.setItem("auth",true);
-      history.push("/");
+      history.push("/tabs/profile");
       console.log("Going to home====>")
     } else {
       setButtonsDisabled(false);

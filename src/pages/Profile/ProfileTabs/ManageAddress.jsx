@@ -1,4 +1,4 @@
-import { IonButton, IonCard, IonCardContent, IonCol, IonContent, IonGrid, IonIcon, IonPage, IonRow, IonText } from '@ionic/react'
+import { IonButton, IonCard, IonCardContent, IonCol, IonContent, IonGrid, IonIcon, IonModal, IonPage, IonRow, IonText } from '@ionic/react'
 import React, { useContext, useEffect, useState } from 'react'
 import HeaderSub from '../../../components/Header/HeaderSub'
 import "./ProfileTabs.scss"
@@ -9,8 +9,9 @@ import { useHistory } from 'react-router'
 import { httpService } from '../../../services'
 import EmptyAddress from '../../OrderBook/EmptyAddress'
 const ManageAddress = () => {
-  const { log,UserAddress, setUserAddress } = useContext(UserContext);
+  const { log,UserAddress, setUserAddress,EditedAddress } = useContext(UserContext);
   const [addresses, setAddresses] = useState();
+  const [isOpen, setIsOpen] = useState(false);
   const { sessionId } = useContext(SessionContext);
   const [buttonsDisabled, setButtonsDisabled] = useState(false);
   
@@ -22,17 +23,17 @@ const history =useHistory();
   useEffect(() => {
     if (log === 0) {
       // navigate("/");
-      console.log("navigate("/")")
+      console.log("navigate to /",log)
     }
     const getAllAddresses = async () => {
       try {
         const {
           data: { data: allAddresses },
         } = await httpService.get(
-          httpService.apiEndpointLong + "rest/account/address",
+          httpService.apiEndpointLong +"rest/account/address" ,
           { headers: { ...httpService.headers, "X-Oc-Session": sessionId } }
         );
-        console.log(allAddresses);
+        console.log("allAddresses",allAddresses);
         if (allAddresses && allAddresses.length != 0) {
           setAddresses(allAddresses.addresses);
         } else {
@@ -49,9 +50,9 @@ const history =useHistory();
     };
     console.log("efc called", sessionId);
     if (sessionId && log === 1) {
-      // getAllAddresses();
+      getAllAddresses();
     }
-  }, [sessionId, log]);
+  }, [sessionId, log,EditedAddress,UserAddress]);
   const deleteAddress = async (address_id) => {
     setButtonsDisabled(true);
 
@@ -154,8 +155,8 @@ style={{ backgroundColor: "#F1F1F1" }}>
               {addresses ? (
                 addresses.length !== 0 ? (
                   <>
-                    <div className="row">
-                      <div style={{display:"flex",justifyContent:"center",alignItem:"center"}}>
+                    <div className="row" style={{margin:"20px 0px"}}>
+                      <div style={{display:"flex",justifyContent:"end",alignItem:"center"}}>
                         <IonButton onClick={handelAddAddress} shape='round' style={{width:"40%"}}>+ Add Address</IonButton>
                        </div>
                     </div>
@@ -182,6 +183,7 @@ style={{ backgroundColor: "#F1F1F1" }}>
       ) : (
         <h1>Loading...</h1>
       )}
+
 
 
 </IonContent>
