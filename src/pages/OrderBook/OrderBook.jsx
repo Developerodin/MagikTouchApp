@@ -266,7 +266,7 @@ console.log("checkout Step",checkoutStep)
   const placeOrder = () => {
     const orderPlacer = async () => {
       try {
-        let response = await httpService.post(
+        let response = await httpService.put(
           httpService.apiEndpointShort + "confirm",
           {},
           { headers: { ...httpService.headers, "X-Oc-Session": sessionId } }
@@ -478,6 +478,7 @@ console.log("checkout Step",checkoutStep)
               { headers: { ...httpService.headers, "X-Oc-Session": sessionId } }
             );
             response = response.data;
+            console.log("payment method created==>",response);
             if (
               response &&
               "success" in response &&
@@ -485,7 +486,7 @@ console.log("checkout Step",checkoutStep)
               "error" in response &&
               response.error.length === 0
             ) {
-              console.log("payment method created");
+              console.log("payment method created ==>",response);
 
               let response = await httpService.post(
                 httpService.apiEndpointShort + "confirm",
@@ -757,12 +758,13 @@ console.log("checkout Step",checkoutStep)
                 payment_method: "cod",
                 agree: 1,
                 comment: commentt,
-                seller_id:"",
+                
               },
               { headers: { ...httpService.headers, "X-Oc-Session": sessionId } }
             );
-            response = response.data;
             console.log("payment method created before",response);
+            response = response.data;
+            
             if (
               response &&
               "success" in response &&
@@ -783,6 +785,7 @@ console.log("checkout Step",checkoutStep)
                 }
               );
               response = response.data;
+              console.log("Confirg after payment method",response)
               if (
                 response &&
                 "success" in response &&

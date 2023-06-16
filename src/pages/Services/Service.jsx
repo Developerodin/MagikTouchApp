@@ -59,7 +59,9 @@ const Service = () => {
   return (
    <IonPage>
     <Header/>
-    <IonContent style={{backgroundColor:"#F1F1F1"}}>
+    <IonContent className="explore-bg explore-page"
+        forceOverscroll={false}
+        style={{ backgroundColor: "#F1F1F1" }}>
         {
           sessionId &&  allCategories1.map((category,index) => {
               

@@ -12,7 +12,7 @@ const ServicesCard= ({Data}) => {
   }
   // const {Data}=props
   return (
-    <IonCard style={{padding:"0px",margin:"10px"}} onClick={handelCardClick}>
+    <IonCard style={{padding:"0px",margin:"20px 10px"}} onClick={handelCardClick}>
       <IonCardContent style={{padding:"0px",margin:"0px"}}>
         <IonGrid >
           <IonRow>

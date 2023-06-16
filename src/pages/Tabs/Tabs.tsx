@@ -70,10 +70,10 @@ const Tabs = () => {
           <IonIcon icon={ gridOutline } />
           <IonText className='profile-text'>SERVICES</IonText> 
         </IonTabButton>
-        {/* <IonTabButton tab="orders" href="/tabs/orders">
+        <IonTabButton tab="orders" href="/tabs/orders">
           <IonIcon icon={ timeOutline } />
           <IonText className='profile-text'>ORDERS</IonText> 
-        </IonTabButton> */}
+        </IonTabButton>
         <IonTabButton tab="contactus" href="/tabs/contactus">
           <IonIcon icon={ callOutline} />
           <IonText className='profile-text'>CONTACT US</IonText> 
