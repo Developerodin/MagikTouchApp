@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 /* eslint-disable no-undef */
 import { IonButton, IonCol, IonContent, IonFooter, IonGrid, IonIcon, IonImg, IonPage, IonRow, IonText } from '@ionic/react'
 import { alertCircleOutline, chatbubble } from 'ionicons/icons';
@@ -258,7 +259,7 @@ Object.keys(productDetails).length>0 &&
         <div style={{display:"flex",justifyContent:'left',alignItems:"center"}}>
             
             <IonText style={{fontSize:"14px",fontWeight:"bold"}}>AVAILABILITY : </IonText>
-            <IonButton size='small' color="success">IN STOCK</IonButton>
+            <IonButton size='small' color="success">{productDetails.stock_status}</IonButton>
         </div>
     </div>
   </IonCol>
@@ -272,9 +273,13 @@ Object.keys(productDetails).length>0 &&
         <IonText style={{fontSize:"14px",fontWeight:"bold"}}>About Product</IonText>
         </div>
 
-        <div style={{borderTop:"0.5px dashed grey"}}>
-            <IonText style={{fontSize:"12px",color:"grey"}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima nesciunt quas dignissimos dolorum, alias aliquam natus, minus consectetur quam aperiam esse rerum architecto voluptas vitae odio deserunt hic beatae eum.</IonText>
+        <div style={{borderTop:"0.5px dashed grey",fontSize:"12px",color:"grey"}}>
+           
+           {productDetails.description.replace(/"/g, '')}
+            {/* <IonText style={{fontSize:"12px",color:"grey"}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima nesciunnatust quas dignissimos dolorum, alias aliquam , minus consectetur quam aperiam esse rerum architecto voluptas vitae odio deserunt hic beatae eum.</IonText> */}
         </div>
+
+        
         
     </IonCol>
 </IonRow>
@@ -293,7 +298,10 @@ Object.keys(productDetails).length>0 &&
        </div>
     </IonCol>
     <IonCol size='3'>
-        <IonButton size='small' color="light" >CONTACT</IonButton>
+      <Link to={"/tabs/contactus"} >
+      <IonButton size='small' color="light" >CONTACT</IonButton>
+      </Link>
+       
     </IonCol>
 </IonRow>
 
@@ -319,12 +327,12 @@ Object.keys(productDetails).length>0 &&
                 <IonCol>
                 <IonButton  expand="block"  onClick={() => handleAddToCart()} style={{borderRadius:"20px",height:"30px"}} color="danger">Add To Cart</IonButton>
                 </IonCol>
-                <IonCol>
+                {/* <IonCol>
                   <Link to={"/book"} style={{textDecoration:"none"}}>
                   <IonButton expand="full"  fill="outline" color="danger"  style={{height:"30px",border:"1px solid crimson"}}>BOOK NOW</IonButton>
                   </Link>
                 
-                </IonCol>
+                </IonCol> */}
             </IonRow>
         </IonGrid>
         

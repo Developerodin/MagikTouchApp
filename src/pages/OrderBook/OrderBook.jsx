@@ -758,6 +758,7 @@ console.log("checkout Step",checkoutStep)
                 payment_method: "cod",
                 agree: 1,
                 comment: commentt,
+                seller_id:""
                 
               },
               { headers: { ...httpService.headers, "X-Oc-Session": sessionId } }

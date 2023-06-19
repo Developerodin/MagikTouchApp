@@ -13,7 +13,7 @@ const ProfileListItem = ({Data}) => {
     <IonItem button onClick={handelClick} style={{marginTop:"10px"}}>
                   <IonIcon icon={Data.icon} color={Data.color} slot="start"></IonIcon>
                   <IonLabel>{Data.title}</IonLabel>
-                  <IonIcon icon={caretForwardOutline} slot="end"></IonIcon>
+                  {/* <IonIcon icon={caretForwardOutline} slot="end"></IonIcon> */}
                 </IonItem>
   )
 }

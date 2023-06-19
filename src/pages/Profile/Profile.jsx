@@ -77,25 +77,25 @@ window.location.reload();
                 <IonItem button style={{marginTop:"10px"}}>
                   <IonIcon icon={shareSocialOutline} color='dark' slot="start"></IonIcon>
                   <IonLabel>Share App</IonLabel>
-                  <IonIcon icon={caretForwardOutline}  slot="end"></IonIcon>
+                  {/* <IonIcon icon={caretForwardOutline}  slot="end"></IonIcon> */}
                 </IonItem>
 
                 <IonItem button style={{marginTop:"10px"}} onClick={() => setIsDeleteOpen(true)}>
                   <IonIcon icon={trashOutline}  slot="start"></IonIcon>
                   <IonLabel>Delete Account</IonLabel>
-                  <IonIcon icon={caretForwardOutline} slot="end"></IonIcon>
+                  {/* <IonIcon icon={caretForwardOutline} slot="end"></IonIcon> */}
                 </IonItem>
 
                 <IonItem button style={{marginTop:"10px"}}>
                   <IonIcon icon={starOutline} color="success" slot="start"></IonIcon>
                   <IonLabel>Rate Magik Touch</IonLabel>
-                  <IonIcon icon={caretForwardOutline} slot="end"></IonIcon>
+                  {/* <IonIcon icon={caretForwardOutline} slot="end"></IonIcon> */}
                 </IonItem>
 
                 <IonItem  lines='none' style={{marginTop:"10px"}} onClick={() => setIsOpen(true)}>
                   <IonIcon icon={logOutOutline} color="danger" slot="start"></IonIcon>
                   <IonLabel>Logout</IonLabel>
-                  <IonIcon icon={caretForwardOutline} slot="end"></IonIcon>
+                  {/* <IonIcon icon={caretForwardOutline} slot="end"></IonIcon> */}
                 </IonItem>
         
       
