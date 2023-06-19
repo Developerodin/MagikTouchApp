@@ -224,6 +224,9 @@ const handleAddToCart = (redirect) => {
           fetchData();
         }
       }, [sessionId, id]);
+     const productDetails2 = {
+        description: '<p><span lang="EN-US" style="line-height: 107%;">If you are looking for&nbsp;professional and local&nbsp;commercial office cleaning and disinfection services. Our professional cleaners receive extensive training to choose the right cleaning procedure for better results. Our skilled and certified operators have hands-on experience in using high-tech machines to remove dirt, dust, germs, and grease from your place. Additionally, we use internationally accepted disinfecting chemicals to disinfect high-touch-up areas.</span><br></p>'
+      };
   return (
     <IonPage>
         <HeaderSub Title={ state ? state.name : "Product"}/>
@@ -274,7 +277,8 @@ Object.keys(productDetails).length>0 &&
         </div>
 
         <div style={{borderTop:"0.5px dashed grey",fontSize:"12px",color:"grey"}}>
-           
+          
+        
            {productDetails.description.replace(/"/g, '')}
             {/* <IonText style={{fontSize:"12px",color:"grey"}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima nesciunnatust quas dignissimos dolorum, alias aliquam , minus consectetur quam aperiam esse rerum architecto voluptas vitae odio deserunt hic beatae eum.</IonText> */}
         </div>

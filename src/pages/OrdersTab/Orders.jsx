@@ -6,6 +6,7 @@ import { useHistory, useParams } from 'react-router';
 import { httpService } from '../../services';
 import CompletedOrders from './CompletedOrders';
 import PendingOrders from './PendingOrders';
+import Loading from '../../components/LoadingComp/Loading';
 
 const Orders = () => {
   const [orders, setOrders] = useState();
@@ -85,7 +86,7 @@ const Orders = () => {
         <IonContent className="explore-bg explore-page"
         forceOverscroll={false}
         style={{ backgroundColor: "#F1F1F1" }}>
-        {/* <div>
+        <div>
       {orders && orderStatuses ? (
        
          <div>
@@ -117,12 +118,13 @@ const Orders = () => {
          
       ) : (
        
-        <h1>Loding</h1>
+        // <h1>Loding</h1>
+        <Loading/>
       )}
 
       
-    </div> */}
-    <PendingOrders/>
+    </div>
+    {/* <PendingOrders/> */}
         </IonContent>
      
     </IonPage>

@@ -9,6 +9,7 @@ import AddressCard from '../../components/AddressComp/AddressCard'
 import CartAddressCard from './CartAddressCard'
 import ProductsTotal from './ProductsTotal'
 import EmptyAddress from './EmptyAddress'
+import Loading from '../../components/LoadingComp/Loading';
 const OrderBook = () => {
     const { sessionId } = useContext(SessionContext);
     const { showToast } = useContext(CatalogContext);
@@ -758,7 +759,7 @@ console.log("checkout Step",checkoutStep)
                 payment_method: "cod",
                 agree: 1,
                 comment: commentt,
-                seller_id:""
+                seller_id:"",
                 
               },
               { headers: { ...httpService.headers, "X-Oc-Session": sessionId } }
@@ -1533,8 +1534,8 @@ console.log("checkout Step",checkoutStep)
                 </>
               ) : (
 
-                // <Loading />
-                <h1>Loading</h1>
+                <Loading />
+                // <h1>Loading</h1>
               )
             ) : null}
 
@@ -1680,8 +1681,8 @@ console.log("checkout Step",checkoutStep)
           
                 </>
               ) : (
-                // <Loading />
-                <h1>Loading</h1>
+                <Loading />
+                // <h1>Loading</h1>
               )
             ) : null}
 
@@ -1754,7 +1755,7 @@ console.log("checkout Step",checkoutStep)
 
             {checkoutStep === "pending" ? (
               <div style={{display:"flex",justifyContent:"center",alignItems:"center",width:"100%",height:"100%"}}>
-               <IonCard style={{marginTop:"100px",borderRadius:"20px"}}>
+               {/* <IonCard style={{marginTop:"100px",borderRadius:"20px"}}>
           <IonCardContent>
           <div >
           <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
@@ -1765,8 +1766,8 @@ console.log("checkout Step",checkoutStep)
         </div>
           </div>
           </IonCardContent>
-               </IonCard> 
-               
+               </IonCard>  */}
+               <Loading/>
               </div>
             ) : null}
 
@@ -1810,8 +1811,9 @@ console.log("checkout Step",checkoutStep)
                 </>
               ) : (
 
-                // <Loading />
-                <h4>Footer</h4>
+                <Loading />
+                
+                // <h4>Footer</h4>
               )
             ) : null}
 
@@ -1845,8 +1847,8 @@ console.log("checkout Step",checkoutStep)
         </IonGrid>
    
               ) : (
-                // <Loading />
-                <h1>Loading</h1>
+                <Loading />
+                // <h1>Loading</h1>
               )
             ) : null}
 
@@ -1873,8 +1875,8 @@ console.log("checkout Step",checkoutStep)
         </IonGrid>
    
               ) : (
-                // <Loading />
-                <h1>Loading</h1>
+                <Loading />
+                // <h1>Loading</h1>
               )
             ) : null}
         </IonFooter>
