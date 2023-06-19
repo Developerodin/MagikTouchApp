@@ -23,6 +23,10 @@ const Profile = () => {
     if (log === 0) {
       history.push("/tabs/login");
     }
+    else if (log === 1 ) {
+      
+      history.push("/tabs/profile");
+    }
     
   }, [log]);
 
@@ -55,7 +59,10 @@ window.location.reload();
         <IonCol>
           
          <div style={{fontSize:"20px",fontWeight:"bold",textAlign:"center"}}>
-          <IonText>Akshay pareek</IonText>
+          {
+            userDetails && <IonText>{userDetails.firstname} {userDetails.lastname}</IonText>
+          }
+          
          </div>
          <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
           <IonButton style={{width:"70%"}} color="tertiary" shape='round'>Edit</IonButton>

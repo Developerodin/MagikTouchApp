@@ -7,7 +7,7 @@ import { httpService } from '../../services';
 import CompletedOrders from './CompletedOrders';
 import PendingOrders from './PendingOrders';
 import Loading from '../../components/LoadingComp/Loading';
-
+import noOrders from "./noorders.jpeg"
 const Orders = () => {
   const [orders, setOrders] = useState();
 
@@ -19,7 +19,7 @@ const Orders = () => {
 
   const [buttonsDisabled, setButtonsDisabled] = useState(false);
   const [selectedTab, setSelectedTab] = useState('CompletedOrders');
-
+  const [NotLogin,setNotLogin] = useState(true);
   const params = useParams();
 
   const history=useHistory();
@@ -45,12 +45,17 @@ const Orders = () => {
     };
     console.log("order efc called", sessionId, params.status);
     if (sessionId && log === 1) {
+      setNotLogin(false)
       getAllOrders();
     } else if (log === 0) {
+      setNotLogin(true);
       // navigate("/login");
-      history.push("/login");
+      // history.push("/tabs/profile");
+
     }
   }, [sessionId, log]);
+
+
   const renderComponent = () => {
     switch (selectedTab) {
       case 'CompletedOrders':
@@ -83,6 +88,16 @@ const Orders = () => {
   return (
     <IonPage>
       <HeaderSub Title={"Orders"} />
+      {
+        NotLogin  ?  <IonContent>
+        <div style={{textAlign:"center"}}>
+         <img src={noOrders} alt="" style={{ width: "100%" }} />
+            <h1>No Orders Yet !</h1>
+      </div>
+      </IonContent>
+
+        :
+       
         <IonContent className="explore-bg explore-page"
         forceOverscroll={false}
         style={{ backgroundColor: "#F1F1F1" }}>
@@ -117,15 +132,18 @@ const Orders = () => {
               </div>
          
       ) : (
-       
-        // <h1>Loding</h1>
+      
         <Loading/>
+        
+      
       )}
 
       
     </div>
     {/* <PendingOrders/> */}
         </IonContent>
+      }
+        
      
     </IonPage>
   )

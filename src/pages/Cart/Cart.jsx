@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Cart.scss";
 import {
   IonButton,
@@ -22,13 +22,15 @@ import HeaderSub from "../../components/Header/HeaderSub";
 import { Link } from "react-router-dom";
 import { phonePortraitOutline, starHalfOutline } from "ionicons/icons";
 import CartCard from "../../components/CartComp/CartCard";
-import { CartContext, CatalogContext } from "../../contexts";
+import { CartContext, CatalogContext, UserContext } from "../../contexts";
 import CartTotal from "../../components/CartComp/CartTotal";
 import EmptyCart from "./EmptyCart";
 const Cart = () => {
   const { cart, deleteFromCart, updateQuantity } = useContext(CartContext);
   const { getProductFromProductsList } = useContext(CatalogContext);
   const [buttonsDisabled, setButtonsDisabled] = useState(false);
+  const { log,UserAddress, setUserAddress,user } = useContext(UserContext);
+  const [Path,setPath]=useState("login");
 const CartData=[
         {id:"2",Img:"https://mgktch.com/image/catalog/Service%20Categories/Air%20Conditioner%20Repair.jpg",title:"AC Services",price:"2,302"},
         {id:"3",Img:"https://mgktch.com/image/catalog/Service%20Categories/Bathroom%20Cleaning.jpg",title:"Bathroom Cleaning",price:"2,302"},
@@ -42,6 +44,21 @@ const CartData=[
         {id:"11",Img:"https://mgktch.com/image/catalog/Service%20Categories/Plumber.jpg",title:"Plumbing Services",price:"2,302"},
         {id:"12",Img:"https://mgktch.com/image/catalog/Service%20Categories/RO%20Services%20&%20Repairs.jpg",title:"RO Services",price:"2,302"},
 ]
+useEffect(() => {
+ 
+  console.log("log...", log);
+  if (!cart || cart.length === 0) {
+    // navigate("/cart");
+    console.log("navigate cart");
+  } else if (log === 0) {
+    // navigate("/login");
+    setPath("login");
+    console.log("navigate login");
+  } else if (log === 1 && user && cart && cart.length !== 0) {
+    console.log("calling handel Checkout");
+    setPath("checkout");
+  }
+}, [log, user, cart]);
 
   return (
     <IonPage>
@@ -82,9 +99,17 @@ const CartData=[
           <IonButton  expand="block"   style={{borderRadius:"20px",height:"30px"}} color="danger">Book Now</IonButton>
           </IonCol> */}
           <IonCol>
-            <Link to={"/book"} style={{textDecoration:"none"}}>
-            <IonButton expand="full"  fill="outline" color="danger"  style={{height:"30px",border:"1px solid crimson"}}>CHECKOUT NOW</IonButton>
-            </Link>
+            {
+              Path==="checkout" && <Link to={"/book"} style={{textDecoration:"none"}}>
+              <IonButton expand="full"  fill="outline" color="danger"  style={{height:"30px",border:"1px solid crimson"}}>CHECKOUT NOW</IonButton>
+              </Link>
+            }
+            {
+              Path==="login" && <Link to={"/tabs/login"} style={{textDecoration:"none"}}>
+              <IonButton expand="full"  fill="outline" color="danger"  style={{height:"30px",border:"1px solid crimson"}}>Login In</IonButton>
+              </Link>
+            }
+            
           
           </IonCol>
       </IonRow>
