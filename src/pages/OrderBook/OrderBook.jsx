@@ -10,6 +10,7 @@ import CartAddressCard from './CartAddressCard'
 import ProductsTotal from './ProductsTotal'
 import EmptyAddress from './EmptyAddress'
 import Loading from '../../components/LoadingComp/Loading';
+import Confirm from "./Confirm";
 const OrderBook = () => {
     const { sessionId } = useContext(SessionContext);
     const { showToast } = useContext(CatalogContext);
@@ -19,6 +20,7 @@ const OrderBook = () => {
    const [SelectedAddressCard,setSelectedAddressCard]=useState(false);
   const [checkoutStep, setCheckoutStep] = useState("pending");
   const [RefreshState,setRefreshState]=useState(false);
+  const [Cod,setCod]=useState(true);
   // const navigate = useNavigate();
 
   const [addresses, setAddresses] = useState();
@@ -68,6 +70,20 @@ const OrderBook = () => {
   const [selectedPaymentAddress, setSelectedPaymentAddress] = useState();
   const [countries, setCountries] = useState([]);
   const [zones, setZones] = useState([]);
+  const [payUForm, setPayUForm] = useState({
+    key: "",
+    txnid: "",
+    amount: "",
+    firstname: "",
+    email: "",
+    phone: "",
+    productinfo: "",
+    surl: "",
+    furl: "",
+    hash: "",
+    Pg: "",
+  });
+  
 
 useEffect(()=>{
 console.log("checkout Step",checkoutStep)
@@ -189,6 +205,13 @@ console.log("checkout Step",checkoutStep)
       handleCheckout();
     }
   }, [log, user, cart,UserAddress]);
+  const handlePaymentChange = (e, obj, setObj) => {
+    const form = { ...obj };
+
+    form.Pg = e;
+
+    setPayUForm(form);
+  };
 
   const handleCountryChange = async (e, obj, setObj) => {
     const form = { ...obj };
@@ -756,7 +779,7 @@ console.log("checkout Step",checkoutStep)
             let response = await httpService.post(
               httpService.apiEndpointShort + "paymentmethods",
               {
-                payment_method: "cod",
+                payment_method: "payubiz",
                 agree: 1,
                 comment: commentt,
                 seller_id:"",
@@ -787,6 +810,23 @@ console.log("checkout Step",checkoutStep)
                 }
               );
               response = response.data;
+              const payUData = response.payu_info;
+              if (payUData) {
+                let pd = {
+                  key: payUData.key,
+                  txnid: payUData.txnid,
+                  amount: payUData.amount,
+                  firstname: payUData.firstname,
+                  email: payUData.email,
+                  phone: payUData.phone,
+                  productinfo: payUData.productinfo,
+                  surl: payUData.surl,
+                  furl: payUData.furl,
+                  hash: payUData.hash,
+                  Pg: payUData.Pg,
+                };
+                setPayUForm(pd);
+              }
               console.log("Confirg after payment method",response)
               if (
                 response &&
@@ -797,9 +837,9 @@ console.log("checkout Step",checkoutStep)
               ) {
                 console.log("Order confirmation created");
                 setCheckout(response.data);
-                //setCheckoutStep("confirmorder");
+                setCheckoutStep("confirmorder");
                 setButtonsDisabled(false);
-                placeOrder();
+                // placeOrder();
               } else if (
                 response &&
                 "success" in response &&
@@ -928,6 +968,16 @@ console.log("checkout Step",checkoutStep)
       const handelAddAddress=()=>{
         history.push("/add-address")
       }
+
+
+      function submitPayment() {
+      
+        
+          document.getElementById("payment_form").submit();
+      
+      }
+
+
   return (
     <IonPage>
         {/* <HeaderSub Title={"Product"} /> */}
@@ -953,8 +1003,21 @@ console.log("checkout Step",checkoutStep)
                 <HeaderSub Title="CHECKOUT" />
               )
             ) : null}
+
+{checkoutStep === "confirmorder" ? (
+              addresses !== undefined ? (
+                <>
+                  <HeaderSub Title="Confirm Order" />
+                </>
+              ) : (
+                // <Loading />
+                <HeaderSub Title="CHECKOUT" />
+              )
+            ) : null}
               
-        <IonContent forceOverscroll={ false }>
+        <IonContent forceOverscroll={ false }  className="explore-bg explore-page"
+        
+        style={{ backgroundColor: "#F1F1F1" }}>
             <IonGrid>
 
            <IonRow>
@@ -1749,6 +1812,23 @@ console.log("checkout Step",checkoutStep)
                 
               </>
             ) : null}
+
+
+                {checkoutStep === "confirmorder" ? (
+              <>
+                <Confirm
+                  checkout={checkout}
+                  placeOrder={placeOrder}
+                  buttonsDisabled={buttonsDisabled}
+                  handlePaymentChange={handlePaymentChange}
+                  payUForm={payUForm}
+                  setPayUForm={setPayUForm}
+                  setCod={setCod}
+                  Cod={Cod}
+                  payment={guestUser}
+                />
+              </>
+            ) : null}
 {/*  Not in use  end*/}
 
 
@@ -1834,7 +1914,7 @@ console.log("checkout Step",checkoutStep)
                                     <>
                                       <i className="bi bi-arrow-right-circle font-16"></i>
                                       &nbsp;
-                                      Place Order
+                                      Payment Method
                                     </>
                                   )}
                </IonButton>
@@ -1853,8 +1933,8 @@ console.log("checkout Step",checkoutStep)
             ) : null}
 
 
-             {checkoutStep === "confirandpay" ? (
-              addresses !== undefined ? (
+             {checkoutStep === "confirmorder" ? (
+             
                
                  
         
@@ -1862,10 +1942,18 @@ console.log("checkout Step",checkoutStep)
        <IonRow>
           
            <IonCol>
-             
-             <IonButton expand="full"  fill="outline" color="danger" disabled={buttonsDisabled} onClick={(e) => placeOrder(e)}  style={{height:"30px",border:"1px solid crimson"}}>
+            {
+              Cod ? 
+              <IonButton expand="full"  fill="outline" color="danger" disabled={buttonsDisabled}  onClick={(e) => placeOrder()}  style={{height:"30px",border:"1px solid crimson"}}>
+              {buttonsDisabled ? "Order Placing..." : "Place Order"}
+                </IonButton>
+                :
+               <IonButton expand="full"  fill="outline" color="danger" disabled={buttonsDisabled}  onClick={(e) => submitPayment()}  style={{height:"30px",border:"1px solid crimson"}}>
              {buttonsDisabled ? "Order Placing..." : "Confirm and Pay"}
                </IonButton>
+            }
+             
+             
           
            
            </IonCol>
@@ -1874,10 +1962,6 @@ console.log("checkout Step",checkoutStep)
       
         </IonGrid>
    
-              ) : (
-                <Loading />
-                // <h1>Loading</h1>
-              )
             ) : null}
         </IonFooter>
      
