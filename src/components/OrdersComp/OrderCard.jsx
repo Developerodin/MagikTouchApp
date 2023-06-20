@@ -2,10 +2,15 @@
 import { IonButton, IonCard, IonCardContent, IonCol, IonGrid, IonIcon, IonRow, IonText } from '@ionic/react'
 import { calendarClearOutline, locationOutline, timeOutline } from 'ionicons/icons'
 import React from 'react'
+import { useHistory } from 'react-router';
 
 const OrderCard = (props) => {
   const {order} = props;
   // console.log('OrderCard', order)
+const history = useHistory();
+  const handelMoreInfo=()=>{
+    history.push(`/OrderInfo/${order.order_id}`)
+  }
   return (
     <IonCard style={{marginTop:"30px",boxShadow: "rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px",borderRadius:"20px"}}>
       <IonCardContent>
@@ -66,7 +71,7 @@ const OrderCard = (props) => {
         <IonRow>
             <IonCol>
                 <div style={{display:"flex",justifyContent:"center"}}>
-                    <IonButton>MORE INFO</IonButton>
+                    <IonButton onClick={handelMoreInfo}>MORE INFO</IonButton>
                 </div>
             </IonCol>
         </IonRow>

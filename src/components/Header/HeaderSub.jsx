@@ -31,7 +31,7 @@ const HeaderSub = (props) => {
                 <IonCol size='8' >
                     <div onClick={handelBack} style={{display:"flex",justifyContent:"center",alignItems:"center",fontSize:"17px",fontWeight:"bold",height:"100%"}}>
                         <IonIcon style={{marginRight:"10px"}}  color="danger" icon={caretBackOutline}></IonIcon>
-                        <IonText color="danger" >{Title.slice(0,18)}...</IonText>
+                        <IonText color="danger" >{Title.slice(0,18)} {Title.length > 10 && "..."}</IonText>
                     </div>
                 </IonCol>
 

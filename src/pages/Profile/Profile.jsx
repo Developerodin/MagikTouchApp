@@ -11,8 +11,8 @@ const Profile = () => {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const ProfileTabs=[
     {icon:locationOutline,title:"Manage Address",link:"/manage-address",color:"success"},
-    {icon:refreshOutline,title:"Order History",link:"/tabs/orders",color:"dark"},
-    {icon:calendarOutline,title:"Pending Orders",link:"/tabs/orders",color:"tertiary"},
+    {icon:calendarOutline,title:"Order History",link:"/tabs/orders",color:"dark"},
+    // {icon:calendarOutline,title:"Pending Orders",link:"/tabs/orders",color:"tertiary"},
     {icon:personOutline,title:"About Company",link:"/about-us",color:"warning"},
     {icon:earthOutline,title:"Terms & Conditions",link:"/terms-conditions",color:"danger"},
   ]
@@ -41,6 +41,10 @@ window.location.reload();
     console.log("Delete Account");
   }
 
+  const handelEditProfile=()=>{
+    history.push("/tabs/editprofile");
+  }
+
   return (
     <IonPage>
       <HeaderSub Title="Profile"/>
@@ -65,7 +69,7 @@ window.location.reload();
           
          </div>
          <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
-          <IonButton style={{width:"70%"}} color="tertiary" shape='round'>Edit</IonButton>
+          <IonButton style={{width:"70%"}} onClick={handelEditProfile} color="tertiary" shape='round'>Edit</IonButton>
          </div>
           </IonCol>
       </IonRow>

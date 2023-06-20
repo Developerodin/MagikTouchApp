@@ -37,6 +37,7 @@ import Toast from './pages/Toast/Toast';
 import { CatalogContext } from './contexts';
 import EditAddress from './pages/Profile/ProfileTabs/EditAddress';
 import OrderSuccess from './pages/OrderSuccess/OrderSuccess';
+import OrderInfo from './pages/OrdersTab/OrderInfo';
 
 setupIonicReact();
 
@@ -61,6 +62,8 @@ const App = () => {
         {/* <Route path='/OrderSuccess' element={OrderSuccess} exact />  */}
         <Route path="/edit-address/:id" component={EditAddress} exact />
         <Route path="/OrderSuccess" component={OrderSuccess} exact />
+        <Route path="/OrderInfo/:id" component={OrderInfo} exact />
+       
         <Route exact path="/">
           <Redirect to="/tabs" />
         </Route>

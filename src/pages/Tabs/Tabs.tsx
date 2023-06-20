@@ -17,6 +17,7 @@ import SubServices from '../Services/SubServices';
 import { UserContext } from '../../contexts';
 import ContactUs from '../Contact Us/ContactUs';
 import Orders from '../OrdersTab/Orders';
+import EditProfile from '../Profile/EditProfile';
 
 const Tabs = () => {
  
@@ -48,6 +49,7 @@ const Tabs = () => {
          <Route path="/tabs/signup" component={SignUp} exact />
         
         <Route path="/tabs/contactus" component={ContactUs} exact />
+        <Route path="/tabs/editprofile" component={EditProfile} exact />
         
         {/*<Route path="/tabs/discover" component={Discover} exact />
         
