@@ -62,23 +62,23 @@ const Tabs = () => {
       <IonTabBar slot="bottom" className="tabs-page tab-bar-no-border">
         <IonTabButton tab="explore" href="/tabs/explore">
           <IonIcon icon={ homeOutline } />
-          <IonText className='profile-text'>HOME</IonText> 
+          <IonText className='profile-text' style={{fontSize:"11px",fontWeight:"bold"}}>HOME</IonText> 
         </IonTabButton>
         <IonTabButton tab="profile" href={ProfilePath}>
           <IonIcon icon={ personOutline } />
-          <IonText className='profile-text'>PROFILE</IonText> 
+          <IonText className='profile-text' style={{fontSize:"11px",fontWeight:"bold"}}>PROFILE</IonText> 
         </IonTabButton>
-        <IonTabButton tab="activities" href="/tabs/services" className="color-gold">
+        <IonTabButton tab="activities" href="/services/71" className="color-gold">
           <IonIcon icon={ gridOutline } />
-          <IonText className='profile-text'>SERVICES</IonText> 
+          <IonText className='profile-text' style={{fontSize:"11px",fontWeight:"bold"}} >SERVICES</IonText> 
         </IonTabButton>
         <IonTabButton tab="orders" href="/tabs/orders">
           <IonIcon icon={ timeOutline } />
-          <IonText className='profile-text'>ORDERS</IonText> 
+          <IonText className='profile-text' style={{fontSize:"11px",fontWeight:"bold"}}>ORDERS</IonText> 
         </IonTabButton>
         <IonTabButton tab="contactus" href="/tabs/contactus">
           <IonIcon icon={ callOutline} />
-          <IonText className='profile-text'>CONTACT US</IonText> 
+          <IonText className='profile-text' style={{fontSize:"8px",fontWeight:"bold"}}>CONTACT US</IonText> 
         </IonTabButton>
        
       </IonTabBar>

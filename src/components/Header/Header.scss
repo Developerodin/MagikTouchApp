@@ -6,3 +6,7 @@ ion-searchbar.custom {
     --clear-button-color: grey;
     --border-radius: 4px;
   }
+  
+ .searchbar-input {
+    --box-shadow: none !important;
+  }

@@ -140,7 +140,22 @@ const PaymentForm = ({ payUForm }) => {
         <br />
         <br />
       </div>
+      {/* <div id="rightContainerFormValue">
+        <label htmlFor="hash">hash:</label>
+        <input
+          type="text"
+          id="hashforNonSeamless"
+          name="udf5"
+          value={payUForm.payUForm.udf5}
+          className="inputformModifiedRight"
+          required="required"
+          readOnly
+        />
+        <br />
+        <br />
+      </div> */}
       <input type="text" name="Pg" value={payUForm.payUForm.Pg} />
+      <input type="text" name="udf5" value={payUForm.payUForm.udf5} />
       <input type="submit" defaultValue="Submit" id="formsubmitbtn" />
       <br />
       <br />

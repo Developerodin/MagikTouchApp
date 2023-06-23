@@ -17,6 +17,7 @@ import {
   IonRow,
   IonText,
   IonTitle,
+  IonToolbar,
 } from "@ionic/react";
 import HeaderSub from "../../components/Header/HeaderSub";
 import { Link } from "react-router-dom";
@@ -93,41 +94,27 @@ useEffect(() => {
       <IonFooter>
 
       {cart && cart.length !== 0 ? 
-      <IonGrid>
-      <IonRow>
-          {/* <IonCol>
-          <IonButton  expand="block"   style={{borderRadius:"20px",height:"30px"}} color="danger">Book Now</IonButton>
-          </IonCol> */}
-          <IonCol>
-            {
+
+      <div>
+ {
               Path==="checkout" && <Link to={"/book"} style={{textDecoration:"none"}}>
-              <IonButton expand="full"  fill="outline" color="danger"  style={{height:"30px",border:"1px solid crimson"}}>CHECKOUT NOW</IonButton>
+              <IonButton expand="full"   color="danger"  >BOOK NOW</IonButton>
               </Link>
             }
             {
               Path==="login" && <Link to={"/tabs/login"} style={{textDecoration:"none"}}>
-              <IonButton expand="full"  fill="outline" color="danger"  style={{height:"30px",border:"1px solid crimson"}}>Login In</IonButton>
+              <IonButton expand="full"  color="danger"  >Login In</IonButton>
               </Link>
             }
-            
-          
-          </IonCol>
-      </IonRow>
-  </IonGrid>
+     </div>
+   
       : 
-      <IonGrid>
-            <IonRow>
-                {/* <IonCol>
-                <IonButton  expand="block"   style={{borderRadius:"20px",height:"30px"}} color="danger">Book Now</IonButton>
-                </IonCol> */}
-                <IonCol>
-                  <Link to={"/"} style={{textDecoration:"none"}}>
-                  <IonButton expand="full"  fill="outline" color="danger"  style={{height:"30px",border:"1px solid crimson"}}>SHOP NOW</IonButton>
+     
+ <Link to={"/"} style={{textDecoration:"none"}}>
+                  <IonButton expand="full"   color="danger"  >SHOP NOW</IonButton>
                   </Link>
-                
-                </IonCol>
-            </IonRow>
-        </IonGrid>
+    
+      
       }
 
       

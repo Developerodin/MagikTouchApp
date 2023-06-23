@@ -1,4 +1,4 @@
-import { IonButton, IonCard, IonCardContent, IonCol, IonContent, IonDatetime, IonFooter, IonGrid, IonIcon, IonInput, IonPage, IonRow, IonText } from '@ionic/react'
+import { IonButton, IonCard, IonCardContent, IonCol, IonContent, IonDatetime, IonFooter, IonGrid, IonIcon, IonInput, IonPage, IonRow, IonText, IonToolbar } from '@ionic/react'
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import HeaderSub from '../../components/Header/HeaderSub'
@@ -824,6 +824,7 @@ console.log("checkout Step",checkoutStep)
                   furl: payUData.furl,
                   hash: payUData.hash,
                   Pg: payUData.Pg,
+                  udf5:payUData.udf5
                 };
                 setPayUForm(pd);
               }
@@ -1004,7 +1005,7 @@ console.log("checkout Step",checkoutStep)
               )
             ) : null}
 
-{checkoutStep === "confirmorder" ? (
+              {checkoutStep === "confirmorder" ? (
               addresses !== undefined ? (
                 <>
                   <HeaderSub Title="Confirm Order" />
@@ -1862,14 +1863,9 @@ console.log("checkout Step",checkoutStep)
         {    checkoutStep === "paymentaddress" ? (
               addresses !== undefined ? (
                 <>
-                    
-        
-        <IonGrid>
-       <IonRow>
-          
-           <IonCol>
-             
-             <IonButton expand="full"  fill="outline" color="danger" onClick={(e) => confirmPaymentAddress(e)}  style={{height:"30px",border:"1px solid crimson"}}>
+
+                   
+                   <IonButton expand="full"   color="danger" onClick={(e) => confirmPaymentAddress(e)}  >
              {buttonsDisabled ? (
                                "Processing..."
                              ) : (
@@ -1879,13 +1875,9 @@ console.log("checkout Step",checkoutStep)
                                </>
                              )}
                </IonButton>
-          
-           
-           </IonCol>
-          </IonRow>
-
-      
-        </IonGrid>
+                    
+        
+        
    
           
                 </>
@@ -1900,31 +1892,21 @@ console.log("checkout Step",checkoutStep)
         {checkoutStep === "shippingaddress" ? (
               addresses !== undefined ? (
                
-                 
-        
-        <IonGrid>
-       <IonRow>
-          
-           <IonCol>
-             
-             <IonButton expand="full"  fill="outline" color="danger" onClick={(e) => confirmShippingAddress(e)}  style={{height:"30px",border:"1px solid crimson"}}>
+                
+<IonButton expand="full"   color="danger" onClick={(e) => confirmShippingAddress(e)}  >
              {buttonsDisabled ? (
                                     "Processing..."
                                   ) : (
                                     <>
                                       <i className="bi bi-arrow-right-circle font-16"></i>
                                       &nbsp;
-                                      Payment Method
+                                      PAY NOW
                                     </>
                                   )}
                </IonButton>
-          
-           
-           </IonCol>
-          </IonRow>
-
-      
-        </IonGrid>
+              
+        
+       
    
               ) : (
                 <Loading />
@@ -1934,33 +1916,22 @@ console.log("checkout Step",checkoutStep)
 
 
              {checkoutStep === "confirmorder" ? (
-             
-               
-                 
-        
-        <IonGrid>
-       <IonRow>
-          
-           <IonCol>
-            {
+             <div>
+
+            
+             {
               Cod ? 
-              <IonButton expand="full"  fill="outline" color="danger" disabled={buttonsDisabled}  onClick={(e) => placeOrder()}  style={{height:"30px",border:"1px solid crimson"}}>
+              <IonButton expand="full"   color="danger" disabled={buttonsDisabled}  onClick={(e) => placeOrder()}  >
               {buttonsDisabled ? "Order Placing..." : "Place Order"}
                 </IonButton>
                 :
-               <IonButton expand="full"  fill="outline" color="danger" disabled={buttonsDisabled}  onClick={(e) => submitPayment()}  style={{height:"30px",border:"1px solid crimson"}}>
+               <IonButton expand="full"   color="danger" disabled={buttonsDisabled}  onClick={(e) => submitPayment()}  >
              {buttonsDisabled ? "Order Placing..." : "Confirm and Pay"}
                </IonButton>
             }
-             
-             
-          
-           
-           </IonCol>
-          </IonRow>
-
-      
-        </IonGrid>
+              
+              </div>
+       
    
             ) : null}
         </IonFooter>

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 const ProductCard = ({Data}) => {
   return (
-    <IonCard style={{padding:"0px",height:"350px",width:"200px"}}>
+    <IonCard style={{padding:"0px",height:"350px",width:"200px",borderRadius:"15px"}}>
         <IonCardContent style={{padding:"0px",margin:"0px"}}>
         <Link to={{pathname:`/product-detail/${Data.product_id}`,state:Data}} style={{textDecoration:"none"}}>
         <IonGrid>

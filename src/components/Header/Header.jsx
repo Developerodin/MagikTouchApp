@@ -9,31 +9,21 @@ const Header = () => {
   const { cart } = useContext(CartContext);
   return (
 
-    <IonHeader collapse="fade"  >
-      <IonToolbar style={{borderColor:"transparent"}}>
-      
-      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-      <IonSearchbar style={{marginTop:"7px",width:"90%"}}>
-              
-              </IonSearchbar>
-              <Link to={"/cart"} style={{textDecoration:"none"}}>
-                <div >
-                <IonIcon style={{margin:"10px 10px 0px 0px"}} color='dark' size='large' slot="end"   icon={cartOutline}></IonIcon>
-                <div style={{position:"absolute",top:"0",right:"0",marginTop:"10px"}}>
-                <IonBadge style={{borderRadius:"50px"}}  slot="end">{cart && cart.length}</IonBadge>
-                </div>
-               
-                </div>
-              
-              </Link>
+    <IonHeader collapse="fade">
+    <IonToolbar style={{ borderColor: "transparent" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <IonSearchbar  className="searchbar-no-shadow custom" style={{ marginTop: "7px", width: "90%", border: "none", boxShadow: "none" }}></IonSearchbar>
+        <Link to={"/cart"} style={{ textDecoration: "none" }}>
+          <div>
+            <IonIcon style={{ margin: "10px 10px 0px 0px" }} color="dark" size="large" slot="end" icon={cartOutline}></IonIcon>
+            <div style={{ position: "absolute", top: "0", right: "0", marginTop: "10px" }}>
+              <IonBadge style={{ borderRadius: "50px" }} slot="end">{cart && cart.length}</IonBadge>
+            </div>
+          </div>
+        </Link>
       </div>
-              
-              
-             
-            
-      </IonToolbar>
-          
-    </IonHeader>
+    </IonToolbar>
+  </IonHeader>
   
   )
 }

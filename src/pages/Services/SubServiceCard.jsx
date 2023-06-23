@@ -12,7 +12,7 @@ const SubServiceCard= ({Data}) => {
   }
   // const {Data}=props
   return (
-    <IonCard style={{padding:"0px",margin:"10px"}} onClick={handelCardClick}>
+    <IonCard style={{padding:"0px",margin:"15px 10px",borderRadius:"15px"}} onClick={handelCardClick}>
       <IonCardContent style={{padding:"0px",margin:"0px"}}>
         <IonGrid >
           <IonRow>

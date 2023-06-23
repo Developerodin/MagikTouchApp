@@ -47,7 +47,9 @@ const SubServices = () => {
   return (
     <IonPage>
     <HeaderSub Title="Services"/>
-    <IonContent style={{backgroundColor:"#F1F1F1"}}>
+    <IonContent className="explore-bg explore-page"
+        forceOverscroll={false}
+        style={{ backgroundColor: "#F1F1F1" }}>
         {
           sessionId &&  allCategories.map((category,index) => {
               

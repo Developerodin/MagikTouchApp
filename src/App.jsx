@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
@@ -39,10 +39,15 @@ import EditAddress from './pages/Profile/ProfileTabs/EditAddress';
 import OrderSuccess from './pages/OrderSuccess/OrderSuccess';
 import OrderInfo from './pages/OrdersTab/OrderInfo';
 
+
 setupIonicReact();
 
 const App = () => {
   const {toastStatus} = useContext(CatalogContext);
+ 
+
+  
+
   return (
   <IonApp>
     <Toast props={toastStatus}/>

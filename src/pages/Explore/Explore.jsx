@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 
 import {
@@ -17,7 +17,7 @@ import Header from '../../components/Header/Header';
 import HomeSwiper from '../../components/ExploreComp/HomeSwiper';
 import { Link } from 'react-router-dom';
 import { CatalogContext } from '../../contexts';
-
+import { App as MainApp } from '@capacitor/app';
 
 
 const ServicesData=[
@@ -40,9 +40,28 @@ const OtherServicesData=[
 
 
 const Explore=()=> {
-  
+  const [backPressCount, setBackPressCount] = useState(0);
 
+  useEffect(() => {
+    
 
+    const backButtonHandler = async () => {
+      if (backPressCount < 1) {
+        setBackPressCount(1);
+        setTimeout(() => {
+          setBackPressCount(0);
+        }, 2000); // Reset the counter after 2 seconds
+      } else {
+        await MainApp.exitApp(); // Exit the app using the App plugin
+      }
+    };
+
+    MainApp.addListener('backButton', backButtonHandler);
+
+    return () => {
+      MainApp.removeAllListeners('backButton');
+    };
+  }, [backPressCount]);
     
     
     return (

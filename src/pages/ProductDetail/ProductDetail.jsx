@@ -277,9 +277,18 @@ Object.keys(productDetails).length>0 &&
         </div>
 
         <div style={{borderTop:"0.5px dashed grey",fontSize:"12px",color:"grey"}}>
-          
+        <p
+                    className="mb-0"
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        productDetails !== undefined &&
+                        productDetails.description
+                          ? productDetails.description
+                          : "",
+                    }}
+                  ></p>
         
-           {productDetails.description.replace(/"/g, '')}
+           {/* {productDetails.description.replace(/"/g, '')} */}
             {/* <IonText style={{fontSize:"12px",color:"grey"}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima nesciunnatust quas dignissimos dolorum, alias aliquam , minus consectetur quam aperiam esse rerum architecto voluptas vitae odio deserunt hic beatae eum.</IonText> */}
         </div>
 
@@ -310,8 +319,8 @@ Object.keys(productDetails).length>0 &&
 </IonRow>
 
 <IonRow style={{margin:"20px 0px",backgroundColor:"#FFF",padding:"5px"}}>
-    <IonCol size='12'>
-        <IonText style={{fontSize:"16px",fontWeight:"bold"}}>You May Also Like</IonText>
+    <IonCol size='12' style={{marginBottom:"12px"}}>
+        <IonText style={{fontSize:"18px",fontWeight:"bold"}}>You May Also Like</IonText>
     </IonCol>
     <IonCol>
         <ProductSwiper Data={relatedProducts}/>
@@ -322,23 +331,7 @@ Object.keys(productDetails).length>0 &&
            
         </IonContent>
         <IonFooter >
-        {/* <div style={{display:"flex",justifyContent:"space-around",alignAitem:"center",margin:"10px 0px"}}>
-        
-        
-        </div> */}
-        <IonGrid>
-            <IonRow>
-                <IonCol>
-                <IonButton  expand="block"  onClick={() => handleAddToCart()} style={{borderRadius:"20px",height:"30px"}} color="danger">Add To Cart</IonButton>
-                </IonCol>
-                {/* <IonCol>
-                  <Link to={"/book"} style={{textDecoration:"none"}}>
-                  <IonButton expand="full"  fill="outline" color="danger"  style={{height:"30px",border:"1px solid crimson"}}>BOOK NOW</IonButton>
-                  </Link>
-                
-                </IonCol> */}
-            </IonRow>
-        </IonGrid>
+        <IonButton  expand="block"  onClick={() => handleAddToCart()}  color="danger">Add To Cart</IonButton>
         
     </IonFooter>
     </IonPage>

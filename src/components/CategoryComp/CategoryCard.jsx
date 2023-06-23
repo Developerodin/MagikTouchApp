@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 const CategoryCard = ({Data}) => {
   return (
-    <IonCard style={{width:"100%",margin:"10px 0px",padding:"0px"}}>
+    <IonCard style={{width:"100%",margin:"10px 0px",padding:"0px",borderRadius:"15px"}}>
      <IonCardContent style={{padding:"3px"}}>
         <IonGrid>
             <IonRow>
