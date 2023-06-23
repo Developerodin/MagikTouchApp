@@ -27,19 +27,11 @@ const OrderSuccess = () => {
     </div>
         </IonContent>
      <IonFooter>
-     <IonGrid>
-            <IonRow>
-                {/* <IonCol>
-                <IonButton  expand="block"   style={{borderRadius:"20px",height:"30px"}} color="danger">Book Now</IonButton>
-                </IonCol> */}
-                <IonCol>
+     
                   <Link to={"/"} style={{textDecoration:"none"}}>
-                  <IonButton expand="full"  fill="outline" color="danger"  style={{height:"30px",border:"1px solid crimson"}}>Shop More</IonButton>
+                  <IonButton expand="full"   color="danger"  >Shop More</IonButton>
                   </Link>
-                
-                </IonCol>
-            </IonRow>
-        </IonGrid>
+         
      </IonFooter>
 
     </IonPage>

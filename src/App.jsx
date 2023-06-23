@@ -38,6 +38,7 @@ import { CatalogContext } from './contexts';
 import EditAddress from './pages/Profile/ProfileTabs/EditAddress';
 import OrderSuccess from './pages/OrderSuccess/OrderSuccess';
 import OrderInfo from './pages/OrdersTab/OrderInfo';
+import AppUrlListener from './components/AppUrlListner/AppUrlListener';
 
 
 setupIonicReact();
@@ -52,6 +53,7 @@ const App = () => {
   <IonApp>
     <Toast props={toastStatus}/>
     <IonReactRouter>
+      <AppUrlListener></AppUrlListener>
       <IonRouterOutlet>
         <Route path="/tabs" component={Tabs} />
         <Route path="/product-detail/:id" component={ProductDetail} />

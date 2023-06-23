@@ -15,8 +15,8 @@ const Header = () => {
         <IonSearchbar  className="searchbar-no-shadow custom" style={{ marginTop: "7px", width: "90%", border: "none", boxShadow: "none" }}></IonSearchbar>
         <Link to={"/cart"} style={{ textDecoration: "none" }}>
           <div>
-            <IonIcon style={{ margin: "10px 10px 0px 0px" }} color="dark" size="large" slot="end" icon={cartOutline}></IonIcon>
-            <div style={{ position: "absolute", top: "0", right: "0", marginTop: "10px" }}>
+            <IonIcon style={{ margin: "10px 20px 0px 0px" }} color="dark" size="large" slot="end" icon={cartOutline}></IonIcon>
+            <div style={{ position: "absolute", top: "0", right: "0", margin: "10px 10px 0px 0px" }}>
               <IonBadge style={{ borderRadius: "50px" }} slot="end">{cart && cart.length}</IonBadge>
             </div>
           </div>
