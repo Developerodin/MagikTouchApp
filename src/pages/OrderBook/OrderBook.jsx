@@ -11,6 +11,9 @@ import ProductsTotal from './ProductsTotal'
 import EmptyAddress from './EmptyAddress'
 import Loading from '../../components/LoadingComp/Loading';
 import Confirm from "./Confirm";
+import { Browser } from '@capacitor/browser';
+import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser'
+import axios from 'axios'
 const OrderBook = () => {
     const { sessionId } = useContext(SessionContext);
     const { showToast } = useContext(CatalogContext);
@@ -971,12 +974,60 @@ console.log("checkout Step",checkoutStep)
       }
 
 
-      function submitPayment() {
+      const submitPayment = async(e)=> {
+        //  await Browser.open({ url: 'https://secure.payu.in/_payment' });
+     
+
+       
+        const form = document.getElementById('payment_form');
+        form.submit();
+        const formAction = form.getAttribute('action');
       
+        const formData = new FormData(form);
+      
+        const options = {
+          method: 'POST',
+          body: formData,
+        };
+        // const browser = InAppBrowser.create('https://secure.payu.in/_payment', '_self', options);
+
+
+        // try {
+        //   const response = await axios.post('https://secure.payu.in/_payment', formData, {
+        //     headers: {
+        //       'Content-Type': 'application/x-www-form-urlencoded'
+        //     }
+        //   });
+      
+        //   // Access the response headers
+        //   console.log(response.headers['access-control-allow-origin']);
+        //   console.log(response.headers['content-type']);
+      
+        //   // Open the in-app browser with the PayU URL
+        //   await Browser.open({
+        //     url: response.headers['location'],
+        //     windowName: '_blank',
+        //     toolbarColor: '#ffffff',
+        //     presentationStyle: 'popover',
+        //     backButtonCanClose: true,
+        //   });
+        // } catch (error) {
+        //   console.error('Error submitting form:', error);
+        // }
+      
+       
+        }
+         
         
-          document.getElementById("payment_form").submit();
+
+        
+  
+        
+
+  
       
-      }
+      
+
 
 
   return (

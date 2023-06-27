@@ -5,7 +5,9 @@ const config: CapacitorConfig = {
   appName: 'Magiktouch Services',
   webDir: 'build',
   server: {
-    androidScheme: 'https'
+    "allowNavigation": [
+      "*"
+    ]
   }
 };
 

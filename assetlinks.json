@@ -1,0 +1,5 @@
+[{
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target" : { "namespace": "android_app", "package_name": "com.MagikTouch.App",
+                 "sha256_cert_fingerprints": ["47:46:5C:96:56:1B:87:B8:F6:09:21:20:B3:38:B6:49:0C:9A:FD:F9:F4:23:25:47:A7:26:71:73:C1:C9:91:26"] }
+  }]

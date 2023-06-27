@@ -39,14 +39,45 @@ import EditAddress from './pages/Profile/ProfileTabs/EditAddress';
 import OrderSuccess from './pages/OrderSuccess/OrderSuccess';
 import OrderInfo from './pages/OrdersTab/OrderInfo';
 import AppUrlListener from './components/AppUrlListner/AppUrlListener';
-
+import { App as MainApp } from '@capacitor/app';
+import { AppLauncher } from '@capacitor/app-launcher';
 
 setupIonicReact();
 
 const App = () => {
   const {toastStatus} = useContext(CatalogContext);
  
+  useEffect(()=>{
+    
 
+    const checkCanOpenUrl = async () => {
+      const { value } = await AppLauncher.canOpenUrl({ url: 'com.MagikTouch.App' });
+    
+      console.log('Can open url: ', value);
+    };
+
+    MainApp.addListener('appStateChange', ({ isActive }) => {
+      console.log('App state changed. Is active?', isActive);
+    });
+    
+    MainApp.addListener('appUrlOpen', data => {
+      console.log('App opened with URL:', data);
+    });
+    
+    MainApp.addListener('appRestoredResult', data => {
+      console.log('Restored state:', data);
+    });
+    
+    const checkAppLaunchUrl = async () => {
+      const { url } = await MainApp.getLaunchUrl();
+    
+      console.log('App opened with URL: ' + url);
+    };
+   
+    
+
+  },[])
+ 
   
 
   return (

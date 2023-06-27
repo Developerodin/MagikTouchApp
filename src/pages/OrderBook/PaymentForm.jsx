@@ -3,6 +3,8 @@ import React, { useEffect } from 'react'
 import HeaderSub from '../../components/Header/HeaderSub'
 
 const PaymentForm = ({ payUForm }) => {
+ 
+
   useEffect(()=>{
   console.log("Form Data", payUForm)
   },[])
@@ -157,6 +159,7 @@ const PaymentForm = ({ payUForm }) => {
       <input type="text" name="Pg" value={payUForm.payUForm.Pg} />
       <input type="text" name="udf5" value={payUForm.payUForm.udf5} />
       <input type="submit" defaultValue="Submit" id="formsubmitbtn" />
+     
       <br />
       <br />
     </form>
