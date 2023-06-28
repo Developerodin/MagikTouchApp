@@ -7,7 +7,7 @@ const Confirm = (props) => {
   return (
    
             <IonGrid>
-    
+   
              <IonRow>
                 <IonCol size='12' >
                 <PaymentMethod {...props} />

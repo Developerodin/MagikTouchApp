@@ -981,46 +981,12 @@ console.log("checkout Step",checkoutStep)
        
         const form = document.getElementById('payment_form');
         form.submit();
-        const formAction = form.getAttribute('action');
-      
-        const formData = new FormData(form);
-      
-        const options = {
-          method: 'POST',
-          body: formData,
-        };
-        // const browser = InAppBrowser.create('https://secure.payu.in/_payment', '_self', options);
-
-
-        // try {
-        //   const response = await axios.post('https://secure.payu.in/_payment', formData, {
-        //     headers: {
-        //       'Content-Type': 'application/x-www-form-urlencoded'
-        //     }
-        //   });
-      
-        //   // Access the response headers
-        //   console.log(response.headers['access-control-allow-origin']);
-        //   console.log(response.headers['content-type']);
-      
-        //   // Open the in-app browser with the PayU URL
-        //   await Browser.open({
-        //     url: response.headers['location'],
-        //     windowName: '_blank',
-        //     toolbarColor: '#ffffff',
-        //     presentationStyle: 'popover',
-        //     backButtonCanClose: true,
-        //   });
-        // } catch (error) {
-        //   console.error('Error submitting form:', error);
-        // }
-      
        
         }
          
         
 
-        
+       
   
         
 
@@ -1975,6 +1941,12 @@ console.log("checkout Step",checkoutStep)
               <IonButton expand="full"   color="danger" disabled={buttonsDisabled}  onClick={(e) => placeOrder()}  >
               {buttonsDisabled ? "Order Placing..." : "Place Order"}
                 </IonButton>
+              // <a href={"https://strong-kashata-c12ab5.netlify.app"}>
+              //             <IonButton expand="full"   color="danger" disabled={buttonsDisabled}   >
+              //  {buttonsDisabled ? "Order Placing..." : "Place Order"}
+              //   </IonButton>
+              // </a>
+               
                 :
                <IonButton expand="full"   color="danger" disabled={buttonsDisabled}  onClick={(e) => submitPayment()}  >
              {buttonsDisabled ? "Order Placing..." : "Confirm and Pay"}

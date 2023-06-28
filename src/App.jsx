@@ -41,6 +41,7 @@ import OrderInfo from './pages/OrdersTab/OrderInfo';
 import AppUrlListener from './components/AppUrlListner/AppUrlListener';
 import { App as MainApp } from '@capacitor/app';
 import { AppLauncher } from '@capacitor/app-launcher';
+import OrderFail from './pages/OrderFail/OrderFail';
 
 setupIonicReact();
 
@@ -100,6 +101,7 @@ const App = () => {
         {/* <Route path='/OrderSuccess' element={OrderSuccess} exact />  */}
         <Route path="/edit-address/:id" component={EditAddress} exact />
         <Route path="/OrderSuccess" component={OrderSuccess} exact />
+        <Route path="/OrderFail" component={OrderFail} exact />
         <Route path="/OrderInfo/:id" component={OrderInfo} exact />
        
         <Route exact path="/">

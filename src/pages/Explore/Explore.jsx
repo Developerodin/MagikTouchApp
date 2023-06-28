@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 
 
 import {
-  IonPage, IonContent, IonRow, IonCol, IonHeader, IonTitle, IonToolbar, IonGrid, IonCard, IonCardContent, IonText, IonIcon, IonCardHeader, IonCardTitle, IonCardSubtitle
+  IonPage, IonContent, IonRow, IonCol, IonHeader, IonTitle, IonToolbar, IonGrid, IonCard, IonCardContent, IonText, IonIcon, IonCardHeader, IonCardTitle, IonCardSubtitle, useIonViewDidEnter
 } from '@ionic/react';
 
 // import * as swing from 'swing';
@@ -10,7 +10,7 @@ import {
 import './Explore.scss';
 import RippleLoader from '../../components/RippleLoader/RippleLoader';
 import USERS from './users.dummy';
-import { RouteComponentProps } from 'react-router';
+import { RouteComponentProps, useHistory } from 'react-router';
 import { calendarClearOutline, linkOutline, listOutline, shieldCheckmarkOutline, thumbsUpOutline } from 'ionicons/icons';
 
 import Header from '../../components/Header/Header';
@@ -21,27 +21,27 @@ import { App as MainApp } from '@capacitor/app';
 
 
 const ServicesData=[
-  {icon:"https://mgktch.com/image/cache/catalog/home_banners/bunglow-100x100.png",title:"Bunglow Cleaning"},
-  {icon:"https://mgktch.com/image/cache/catalog/home_banners/car_cleaning-100x100.png",title:"Car Cleaning"},
-  {icon:"https://mgktch.com/image/cache/catalog/home_banners/bathroom-100x100.png",title:"Toilet Cleaning"},
-  {icon:"https://mgktch.com/image/cache/catalog/home_banners/cleaning-(2)-100x100.png",title:"Deep Cleaning"},
-  {icon:"https://mgktch.com/image/cache/catalog/home_banners/kitchen-100x100.png",title:"Kitchen Cleaning"},
-  {icon:"https://mgktch.com/image/cache/catalog/home_banners/office-100x100.png",title:"Office Cleaning"},
+  {icon:"https://mgktch.com/image/catalog/home_banners/bunglow.png",title:"Bunglow Cleaning",url:"/category/78"},
+  {icon:"https://mgktch.com/image/catalog/home_banners/car_cleaning.png",title:"Car Cleaning",url:"/category/81"},
+  {icon:"https://mgktch.com/image/catalog/home_banners/bathroom.png",title:"Toilet Cleaning",url:"/category/77"},
+  {icon:"https://mgktch.com/image/catalog/home_banners/cleaning-(2).png",title:"Deep Cleaning",url:"/category/78"},
+  {icon:"https://mgktch.com/image/catalog/home_banners/kitchen.png",title:"Kitchen Cleaning",url:"/category/80"},
+  {icon:"https://mgktch.com/image/catalog/home_banners/office.png",title:"Office Cleaning",url:"/category/83"},
 ]
 
 
 const OtherServicesData=[
-  {img:"https://mgktch.com/image/cache/catalog/Service%20Categories/Electrician-100x100.jpg",title:"Electrician",url:"/category/117"},
-  {img:"https://mgktch.com/image/cache/catalog/Service%20Categories/Pest%20Control-100x100.jpg",title:"Pest control",url:"/category/116"},
-  {img:"https://mgktch.com/image/cache/catalog/Service%20Categories/Plumber-100x100.jpg",title:"Plumbing Services",url:"/category/118"},
-  {img:"https://mgktch.com/image/cache/catalog/Service%20Categories/RO%20Services%20&%20Repairs-100x100.jpg",title:"Ro Services",url:"/category/119"},
+  {img:"https://mgktch.com/image/catalog/Service%20Categories/Electrician.jpg",title:"Electrician",url:"/category/117"},
+  {img:"https://mgktch.com/image/catalog/Service%20Categories/Pest%20Control.jpg",title:"Pest control",url:"/category/116"},
+  {img:"https://mgktch.com/image/catalog/Service%20Categories/Plumber.jpg",title:"Plumbing Services",url:"/category/118"},
+  {img:"https://mgktch.com/image/catalog/Service%20Categories/RO%20Services%20&%20Repairs.jpg",title:"Ro Services",url:"/category/119"},
   
 ]
 
 
 const Explore=()=> {
   const [backPressCount, setBackPressCount] = useState(0);
-
+const history=useHistory();
   useEffect(() => {
     
 
@@ -63,6 +63,14 @@ const Explore=()=> {
     };
   }, [backPressCount]);
     
+  useIonViewDidEnter(() => {
+    const clearHistory = () => {
+      console.log("I will clear history for sure")
+      window.history.replaceState(null, document.title, window.location.href);
+    };
+
+    clearHistory();
+  });
     
     return (
       <IonPage>
@@ -88,10 +96,13 @@ const Explore=()=> {
                   ServicesData.map((el,index)=>{
                     return (
                  <IonCol key={index} size='4' >
+                  <Link  to={el.url}>
+                  
                   <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
                   <img style={{width:"60px",height:"60px"}}  src={el.icon} alt='img'/>
                  
                   </div>
+                  </Link>
                   <IonText style={{display:"flex",fontSize:"12px",justifyContent:"center",alignItems:"center",marginTop:"10px"}}>{el.title}</IonText>
                   
                 </IonCol>
@@ -125,12 +136,12 @@ const Explore=()=> {
                                  return (
                                   <IonCol size='6' key={index}  >
                                     <IonCard style={{margin:"0px",padding:"0px"}}>
-                                      <div style={{height:"80%"}}>
-                                      <img style={{width:"100%"}} alt="Silhouette of mountains" src={el.img} />
+                                      <div style={{width:"100%",height:"150px"}}>
+                                      <img style={{width:"100%",height:"100%"}} alt="Silhouette of mountains" src={el.img} />
                                       </div>
                                     
 
-                                    <div style={{marginTop:"-30px",padding:"0px"}}>
+                                    <div style={{marginTop:"10px",padding:"0px"}}>
                                       
                                       <p>{el.title}</p>
                                       <Link to={el.url} style={{color:"grey",fontSize:"12px"}}>View Details</Link>
