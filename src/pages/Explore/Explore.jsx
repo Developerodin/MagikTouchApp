@@ -63,14 +63,9 @@ const history=useHistory();
     };
   }, [backPressCount]);
     
-  useIonViewDidEnter(() => {
-    const clearHistory = () => {
-      console.log("I will clear history for sure")
-      window.history.replaceState(null, document.title, window.location.href);
-    };
 
-    clearHistory();
-  });
+
+
     
     return (
       <IonPage>

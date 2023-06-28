@@ -105,7 +105,7 @@ const App = () => {
         <Route path="/OrderInfo/:id" component={OrderInfo} exact />
        
         <Route exact path="/">
-          <Redirect to="/tabs" />
+          <Redirect to="/tabs/explore" />
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>
